@@ -1,1 +1,24 @@
+# Ignore local env and secret files
+.env
+.env.*
+.secrets
+
+# Common private keys
+*.pem
+*.key
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Logs
+*.log
 .env

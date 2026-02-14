@@ -1,24 +1,17 @@
 {
-  "name": "Ian Platform – Generic Dev Container",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
-  "features": {
-    "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/common-utils:2": {
-      "username": "vscode"
-    }
-  },
+  "name": "ian-platform-dev",
+  "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu",
+  "remoteUser": "vscode",
+  "postCreateCommand": "sh ./tools/setup-dev.sh || true",
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-azuretools.vscode-docker",
-        "ms-vscode.remote-containers",
-        "github.copilot",
-        "github.copilot-chat"
+        "redhat.vscode-yaml",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "ms-python.python"
       ]
     }
-  },
-  "remoteUser": "vscode",
-  "postCreateCommand": "git --version && echo 'Dev container ready'"
+  }
 }

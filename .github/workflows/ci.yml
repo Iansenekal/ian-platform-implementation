@@ -1,0 +1,58 @@
+---
+name: CI
+
+"on":
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    name: Minimal CI (lint / build / test placeholders)
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup
+        run: |
+          echo "Starting minimal CI: lint, build, test placeholders"
+
+      - name: Lint
+        run: |
+          set -e
+          if [ -f Makefile ]; then
+            make lint || true
+          elif [ -f package.json ]; then
+            npm run lint --if-present || true
+          elif [ -f pyproject.toml ]; then
+            python -m pip install --user flake8 || true
+            flake8 || true
+          else
+            echo "No lint target found; skipping"
+          fi
+
+      - name: Build
+        run: |
+          set -e
+          if [ -f Makefile ]; then
+            make build || true
+          elif [ -f package.json ]; then
+            npm run build --if-present || true
+          else
+            echo "No build target found; skipping"
+          fi
+
+      - name: Test
+        run: |
+          set -e
+          if [ -f Makefile ]; then
+            make test || true
+          elif [ -f package.json ]; then
+            npm test --if-present || true
+          elif [ -f pyproject.toml ]; then
+            python -m pytest || true
+          else
+            echo "No test target found; skipping"
+          fi
