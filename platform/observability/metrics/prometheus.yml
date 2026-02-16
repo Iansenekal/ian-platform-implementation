@@ -1,0 +1,42 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'ian-platform'
+    region: 'south-africa'
+    environment: 'staging'
+
+scrape_configs:
+  - job_name: 'auth-service'
+    static_configs:
+      - targets: ['auth-service:8000']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+      - target_label: service
+        replacement: 'auth-service'
+
+  - job_name: 'nextcloud'
+    static_configs:
+      - targets: ['nextcloud:9100']
+    relabel_configs:
+      - target_label: service
+        replacement: 'nextcloud'
+
+  - job_name: 'gateway'
+    static_configs:
+      - targets: ['gateway:8001']
+    relabel_configs:
+      - target_label: service
+        replacement: 'gateway'
+
+  - job_name: 'node'
+    static_configs:
+      - targets: ['node-exporter:9100']
+    relabel_configs:
+      - target_label: service
+        replacement: 'system'
+
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

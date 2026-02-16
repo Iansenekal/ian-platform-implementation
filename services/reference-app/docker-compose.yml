@@ -1,0 +1,28 @@
+version: '3'
+services:
+  reference-app:
+    build: .
+    ports:
+      - "5000:5000"
+      - "8000:8000"
+    environment:
+      - FLASK_ENV=development
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ../../platform/observability/metrics/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    ports:
+      - "9100:9100"

@@ -1,0 +1,44 @@
+groups:
+  - name: platform-slo-alerts
+    interval: 30s
+    rules:
+      - alert: HighErrorRate
+        expr: rate(app_errors_total[5m]) > 0.01
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High error rate in {{ $labels.service }}"
+          runbook: "https://wiki.example.com/runbooks/high_error_rate"
+
+      - alert: SlowResponseTime
+        expr: histogram_quantile(0.95, http_request_duration_seconds) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Slow responses from {{ $labels.service }}"
+
+      - alert: HighLatencyP99
+        expr: histogram_quantile(0.99, http_request_duration_seconds) > 2.0
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "P99 latency high in {{ $labels.service }}"
+
+      - alert: ServiceDown
+        expr: up{job="auth-service"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "{{ $labels.service }} is down!"
+
+      - alert: DBConnectionPoolExhausted
+        expr: db_connection_pool_size{status="active"} >= db_connection_pool_size{status="total"}
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "DB connection pool exhausted in {{ $labels.database }}"
