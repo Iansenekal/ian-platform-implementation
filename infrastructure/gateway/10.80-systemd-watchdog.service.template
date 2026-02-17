@@ -1,0 +1,19 @@
+# ai-gateway systemd template snippet (illustrative)
+[Unit]
+Description=AI Gateway Service
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/gateway
+ExecStart=/usr/bin/docker compose up
+ExecStop=/usr/bin/docker compose down
+ExecStartPost=/opt/gateway/scripts/deps-check.sh
+Restart=always
+RestartSec=10
+# Optional watchdog usage where heartbeat/check behavior is reliable:
+# WatchdogSec=60s
+
+[Install]
+WantedBy=multi-user.target

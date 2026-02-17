@@ -1,0 +1,25 @@
+retention_classes:
+  RC-01:
+    days: 30
+    purpose: transient-derived-data
+  RC-02:
+    days: 180
+    purpose: standard-search-metadata
+  RC-03:
+    days: 365
+    purpose: extended-project-critical-metadata
+  RC-04:
+    days: 730
+    purpose: compliance-approved-archive
+
+defaults:
+  metadata_first: true
+  content_indexing_default: false
+  source_of_truth_authoritative: true
+  shortest_feasible_retention: true
+
+purge:
+  enabled: true
+  schedule: daily
+  audit_summary_required: true
+  include_scope_counts: true

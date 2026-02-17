@@ -1,0 +1,11 @@
+action,platform_admin,security_audit_ro,helpdesk_operator,project_owner,project_editor,project_viewer,contributor_optional,project_auditor_optional,service_accounts
+manage_nextcloud_settings_apps,yes,no,no,no,no,no,no,no,no
+create_project_folder_root,no,no,no,yes,no,no,no,no,no
+grant_revoke_project_access,no,no,no,yes,no,no,no,no,no
+upload_new_files,no,no,no,yes,yes,no,yes,no,no
+edit_overwrite_files,no,no,no,yes,yes,no,limited,no,no
+delete_files,no,no,no,limited,limited,no,no,no,no
+create_external_share_links,no,no,no,exception_only,exception_only,no,no,no,no
+internal_share_within_project,no,no,no,yes,yes,no,limited,yes,no
+view_audit_logs_evidence,yes,yes,limited,limited,no,no,no,yes,no
+index_search_content,no,no,no,no,no,no,no,no,yes

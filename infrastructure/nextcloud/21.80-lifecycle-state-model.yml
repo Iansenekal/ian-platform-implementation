@@ -1,0 +1,37 @@
+lifecycle_states:
+  - Draft
+  - InReview
+  - Approved
+  - Signed
+  - Archived
+
+transitions:
+  - from: Draft
+    to: InReview
+    event: submit_for_review
+  - from: InReview
+    to: Draft
+    event: review_reject
+  - from: InReview
+    to: Approved
+    event: review_complete
+  - from: Approved
+    to: InReview
+    event: approval_reject
+  - from: Approved
+    to: Signed
+    event: approval_chain_complete
+  - from: Signed
+    to: Archived
+    event: archive
+
+approval_rules:
+  explicit_decision_required: true
+  allowed_actions:
+    - Approve
+    - Reject
+  approve_by_silence_allowed: false
+
+sealing:
+  signed_folder_read_only_after_finalize: true
+  evidence_pack_read_only_after_finalize: true

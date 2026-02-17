@@ -1,0 +1,7 @@
+path,group,access,upload_edit,delete,share,inheritance
+/Projects/<PROJECTCODE>,AI-NC-PROJ-<PROJECTCODE>-OWNER,manage,yes,limited,internal_exception_external,no_break
+/Projects/<PROJECTCODE>,AI-NC-PROJ-<PROJECTCODE>-EDIT,edit,yes,limited,internal_exception_external,no_break
+/Projects/<PROJECTCODE>,AI-NC-PROJ-<PROJECTCODE>-VIEW,read_only,no,no,no,no_break
+/Projects/<PROJECTCODE>/07-Finance,AI-NC-PROJ-<PROJECTCODE>-FINANCE-EDIT,edit,yes,limited,no,break_inheritance_optional
+/Projects/<PROJECTCODE>/07-Finance,AI-NC-PROJ-<PROJECTCODE>-FINANCE-VIEW,read_only,no,no,no,break_inheritance_optional
+/Projects/<PROJECTCODE>/08-Legal,AI-NC-PROJ-<PROJECTCODE>-LEGALHOLD,restricted_read,no,no,no,break_inheritance_optional

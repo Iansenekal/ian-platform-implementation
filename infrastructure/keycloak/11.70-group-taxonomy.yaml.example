@@ -1,0 +1,18 @@
+# /opt/idp/config/group-taxonomy.yaml
+# Canonical group taxonomy (no secrets)
+
+platform_groups:
+  - "AI-PLATFORM-ADMINS"
+  - "AI-SECURITY-AUDITORS"
+  - "AI-OPS-READONLY"
+  - "AI-AUTOMATION-OPERATORS"
+  - "AI-SEARCH-ADMINS"
+  - "AI-NEXTCLOUD-ADMINS"
+
+project_groups:
+  prefix: "AI-NC-PROJ-"
+  roles:
+    - "VIEW"
+    - "EDIT"
+    - "OWNER"
+  separator: "-"

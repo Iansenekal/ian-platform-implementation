@@ -1,0 +1,37 @@
+acl_model:
+  source_of_truth_only: true
+  deny_by_default: true
+  no_acl_no_index: true
+  principal_type: group
+  groups_claim_name: groups
+
+inheritance:
+  enabled: true
+  nearest_parent_wins: true
+  most_restrictive_wins: true
+  break_inheritance_allowed: true
+  sensitive_patterns:
+    - "/Projects/<CODE>/05-Compliance/*"
+    - "/Projects/<CODE>/07-Finance/*"
+    - "/Projects/<CODE>/08-Legal/*"
+    - "/Projects/<CODE>/09-HR/*"
+
+search_enforcement:
+  query_time_acl_filtering: true
+  return_safe_fields_only: true
+  hide_restricted_fields: true
+  skip_on_unknown_principal: true
+  skip_on_ambiguous_acl: true
+
+graph_enforcement:
+  node_acl_tagging: true
+  edge_acl_tagging: true
+  both_endpoints_required: true
+  no_placeholder_nodes: true
+  no_inference_hints: true
+
+drift_detection:
+  enabled: true
+  sampling_rate_percent: 5
+  mismatch_alert_threshold_percent: 1
+  trigger_targeted_reindex: true

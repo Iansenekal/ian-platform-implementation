@@ -1,0 +1,40 @@
+version: "1.0"
+doc: "docs/04-Identity-Access-MFA/04.60-SSO-Integration-Matrix-AllApps.md"
+
+standards:
+  idp_single_authority: true
+  mfa_enforced_at_idp: true
+  rbac_group_driven: true
+  user_exposure_via_frontend_443_only: true
+  internal_tls_required: true
+
+protocol_preference:
+  default: oidc
+  fallback: saml
+  exception_mode:
+    allow_local_accounts_only_with_documented_exception: true
+    zone_e_allowlist_required: true
+
+hostnames:
+  ui: "ui.<domain>"
+  id: "id.<domain>"
+  api: "api.<domain>"
+  nextcloud: "nextcloud.<domain>"
+  dashboards: "dashboards.<domain>"
+  n8n: "n8n.<domain>"
+  windmill: "windmill.<domain>"
+  grafana: "grafana.<domain>"
+
+claims:
+  groups_claim: groups
+  roles_claim_optional: true
+  project_scopes_optional: true
+  required_scopes:
+    - openid
+    - profile
+    - email
+
+token_policy:
+  access_token_minutes: 15
+  session_hours: 8
+  admin_step_up_required: true

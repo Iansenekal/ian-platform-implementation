@@ -1,0 +1,76 @@
+# /opt/gateway/config/policy-matrix.yaml
+# Route families and required permissions (deny-by-default)
+
+defaults:
+  deny_by_default: true
+
+route_families:
+  health:
+    paths:
+      - "/health"
+      - "/ready"
+    auth_required: false
+    min_platform_role: ""
+    project_scoped: false
+    min_project_role: ""
+
+  whoami:
+    paths:
+      - "/whoami"
+    auth_required: true
+    min_platform_role: ""
+    project_scoped: false
+    min_project_role: ""
+
+  search:
+    paths:
+      - "/search/query"
+      - "/search/suggest"
+    auth_required: true
+    min_platform_role: ""
+    project_scoped: true
+    min_project_role: "VIEW"
+    enforce_source_acl: true
+    leak_metadata: false
+
+  graph:
+    paths:
+      - "/graph/nodes"
+      - "/graph/edges"
+      - "/graph/mindmap"
+    auth_required: true
+    min_platform_role: ""
+    project_scoped: true
+    min_project_role: "VIEW"
+    enforce_source_acl: true
+    both_side_visibility: true
+    leak_metadata: false
+
+  ingest:
+    paths:
+      - "/ingest/upload"
+      - "/ingest/status"
+    auth_required: true
+    min_platform_role: ""
+    project_scoped: true
+    min_project_role: "EDIT"
+    enforce_source_acl: true
+
+  audit:
+    paths:
+      - "/audit/events"
+      - "/audit/reports"
+    auth_required: true
+    min_platform_role: "SECURITY_AUDITOR"
+    project_scoped: false
+    min_project_role: ""
+
+  admin:
+    paths:
+      - "/admin/*"
+    auth_required: true
+    min_platform_role: "PLATFORM_ADMIN"
+    project_scoped: false
+    min_project_role: ""
+    admin_allowlist_required: true
+    mfa_required: true

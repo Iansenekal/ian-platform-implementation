@@ -49,6 +49,29 @@ Last Updated: 2026-02-17
 - [x] B21 Add 04.20 AD-vs-Local auth mode standard + decision matrix + CI verification
 - [x] B22 Add 11.40 AD-LDAPS integration templates + verification automation
 - [x] B23 Add 11.50 local-users (no-directory) runbook + templates + verification automation
+- [x] B24 Add 04.30 MFA policy standard + CI artifact verification
+- [x] B25 Add 04.70 break-glass/recovery standard + CI artifact verification
+- [x] B26 Add 11.60 IdP MFA (TOTP/WebAuthn/recovery-codes) runbook + templates + verification automation
+- [x] B27 Add 04.40 role-model RBAC/groups standard + matrix + verification automation
+- [x] B28 Add 11.70 group-to-role mapping claims standard + templates + verification automation
+- [x] B29 Add 20.20 frontend ingress internal-TLS (private CA) standard + verification automation
+- [x] B30 Add 04.60 SSO integration matrix (all apps) + gateway templates + verification automation
+- [x] B31 Add 20.30 UI SSO flow (OIDC) baseline + verification automation
+- [x] B32 Add 10.40 gateway auth-token validation baseline + verification automation
+- [x] B33 Add 10.50 gateway RBAC authorization baseline + verification automation
+- [x] B34 Add 10.80 gateway healthchecks/watchdog baseline + verification automation
+- [x] B35 Add 21.00 Nextcloud overview/role baseline + verification automation
+- [x] B36 Add 21.30 Nextcloud auth-options (SSO/AD/Local) baseline + verification automation
+- [x] B37 Add 21.35 Nextcloud permissions/roles baseline + verification automation
+- [x] B38 Add 21.36 Nextcloud group-naming canonical taxonomy + verification automation
+- [x] B39 Add 21.37 Nextcloud project-folder ACL blueprint + verification automation
+- [x] B40 Add 21.45 Nextcloud audit logging events + evidence-pack baseline + verification automation
+- [x] B41 Add 21.80 Nextcloud document lifecycle + workflow/eSign integration baseline + verification automation
+- [x] B42 Add 21.81 Nextcloud eSign integration options baseline + verification automation
+- [x] B43 Add 30.00 search + knowledge-graph overview baseline + verification automation
+- [x] B44 Add 30.10 search + knowledge-graph sources/connectors baseline + verification automation
+- [x] B45 Add 30.15 search + knowledge-graph ACL inheritance baseline + verification automation
+- [x] B46 Add 30.70 search + knowledge-graph retention/privacy baseline + verification automation
 - [x] B4 Add runtime audit-event emission controls in `services/reference-app/app.py`
 - [x] B5 Expand CI/Makefile quality gates for Sprint A and B checks
 - [x] B6 Wire full OIDC SSO (gateway <-> keycloak) with token validation middleware
@@ -63,7 +86,7 @@ Last Updated: 2026-02-17
 
 ### todo
 - [ ] C1 Implement Keycloak Mode A (AD/LDAPS)
-- [ ] C2 Finalize MFA + break-glass policy enforcement
+- [ ] C2 Finalize MFA + break-glass policy enforcement (04.30 + 04.70 baselines/verifiers added; runtime drill evidence pending)
 - [ ] C3 Implement RBAC group-role mapping automation
 - [ ] C4 Deploy Nextcloud and permission lifecycle controls
 - [ ] C5 Deploy search/graph baseline + ACL inheritance
@@ -114,18 +137,18 @@ Last Updated: 2026-02-17
 - [ ] 31 Keycloak deployment productionized (11.00/11.10 baselines added; runtime hardening/ops evidence pending)
 - [ ] 32 Keycloak AD/LDAPS integration (04.20 + 11.40 baselines and verification assets added; live LDAPS bind evidence pending)
 - [ ] 33 Keycloak local users mode (04.20 + 11.50 baselines and verification assets added; live user lifecycle evidence pending)
-- [ ] 34 MFA policy enforcement
-- [ ] 35 Group-role RBAC baseline
-- [ ] 36 Frontend ingress + internal TLS
-- [ ] 37 UI SSO flow integration
-- [ ] 38 Backend gateway + token validation
-- [ ] 39 Gateway healthchecks/watchdog
-- [ ] 40 Nextcloud deployment
-- [ ] 41 Nextcloud permission model
-- [ ] 42 Nextcloud audit/workflow hooks
-- [ ] 43 Search + graph baseline
-- [ ] 44 ACL inheritance in search/graph
-- [ ] 45 Retention/privacy controls in search/graph
+- [ ] 34 MFA policy enforcement (04.30 + 04.70 + 11.60 baselines/verifiers added; runtime enforcement and drill evidence pending)
+- [ ] 35 Group-role RBAC baseline (04.40 + 11.70 baselines/templates/verifiers added; runtime group-role enforcement evidence pending)
+- [ ] 36 Frontend ingress + internal TLS (20.20 TLS baseline + verifier added; live cert/trust rollout evidence pending)
+- [ ] 37 UI SSO flow integration (04.60 + 20.30 baselines/verifiers added; live end-to-end SSO evidence pending)
+- [ ] 38 Backend gateway + token validation + RBAC authorization (10.40/10.50 baselines + verifiers added; live runtime evidence pending)
+- [ ] 39 Gateway healthchecks/watchdog (10.80 baseline + verifier added; live runtime drill evidence pending)
+- [ ] 40 Nextcloud deployment (21.00 + 21.30 baselines/verifiers added; runtime deployment/auth-mode/access/restore evidence pending)
+- [ ] 41 Nextcloud permission model (21.35 + 21.36 + 21.37 baselines/verifiers added; runtime ACL behavior and cross-app inheritance evidence pending)
+- [ ] 42 Nextcloud audit/workflow hooks (21.45 + 21.80 + 21.81 baselines/verifiers added; runtime signing workflow execution and independent signature-verification evidence pending)
+- [ ] 43 Search + graph baseline (30.00 + 30.10 baselines/verifiers added; runtime connector ingestion and permission-aware mind-map evidence pending)
+- [ ] 44 ACL inheritance in search/graph (30.15 baseline + verifier added; runtime ACL sampling/deny-test and drift-remediation evidence pending)
+- [ ] 45 Retention/privacy controls in search/graph (30.70 baseline + verifier added; runtime purge execution, deletion-SLA evidence, and privacy regression evidence pending)
 
 ### 60-79 Voice + Workflow + Email
 - [ ] 60 Voice ingestion baseline

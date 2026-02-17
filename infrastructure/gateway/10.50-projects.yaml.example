@@ -1,0 +1,25 @@
+# /opt/gateway/config/projects.yaml
+# Project registry used for scoping and UI labels (no secrets)
+
+project_group_prefix: "AI-NC-PROJ-"
+project_roles:
+  VIEW: "VIEW"
+  EDIT: "EDIT"
+  OWNER: "OWNER"
+
+projects:
+  - code: "BANANA-PEEL"
+    name: "Operation Banana Peel"
+    description: "Example project"
+  - code: "NIGHT-PENGUIN"
+    name: "Project Night Penguin"
+    description: "Example project"
+  - code: "DAD-JOKE"
+    name: "Operation Dad Joke"
+    description: "Example project"
+  - code: "LASAGNA"
+    name: "The Lasagna Protocol"
+    description: "Example project"
+  - code: "MASTER"
+    name: "Master Chuck Norris"
+    description: "Primary build / reference project"

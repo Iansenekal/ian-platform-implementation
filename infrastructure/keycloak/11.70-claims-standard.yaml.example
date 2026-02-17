@@ -1,0 +1,18 @@
+# /opt/idp/config/claims-standard.yaml
+# Canonical JWT claims standard (no secrets)
+
+claims:
+  groups_claim: "groups"
+  username_claim: "preferred_username"
+  email_claim: "email"
+  display_name_claim: "name"
+
+security:
+  signing_algorithm: "RS256"
+  allow_none_alg: false
+  allow_hs_alg: false
+  offline_jwks_validation: true
+
+minimization:
+  include_email: false
+  include_display_name: true

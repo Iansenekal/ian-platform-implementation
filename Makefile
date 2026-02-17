@@ -13,9 +13,30 @@ lint:
 	bash -n scripts/prephase/verify_artifact_presence.sh
 	bash -n infrastructure/audit-logging/03.30-audit-verify.sh
 	bash -n infrastructure/keycloak/04.20-auth-modes-verify.sh
+	bash -n infrastructure/keycloak/04.40-rbac-groups-verify.sh
+	bash -n infrastructure/gateway/04.60-sso-integration-verify.sh
 	bash -n infrastructure/keycloak/11.10-idp-ports-verify.sh
 	bash -n infrastructure/keycloak/11.40-ad-ldaps-verify.sh
 	bash -n infrastructure/keycloak/11.50-local-users-verify.sh
+	bash -n infrastructure/keycloak/11.60-mfa-verify.sh
+	bash -n infrastructure/keycloak/11.70-group-role-mapping-verify.sh
+	bash -n infrastructure/gateway/20.20-tls-verify.sh
+	bash -n infrastructure/gateway/20.30-ui-sso-verify.sh
+	bash -n infrastructure/gateway/10.40-token-validation-verify.sh
+	bash -n infrastructure/gateway/10.50-rbac-verify.sh
+	bash -n infrastructure/gateway/10.80-health-watchdog-verify.sh
+	bash -n infrastructure/nextcloud/21.00-overview-verify.sh
+	bash -n infrastructure/nextcloud/21.30-auth-options-verify.sh
+	bash -n infrastructure/nextcloud/21.35-permissions-verify.sh
+	bash -n infrastructure/nextcloud/21.36-group-naming-verify.sh
+	bash -n infrastructure/nextcloud/21.37-project-acl-verify.sh
+	bash -n infrastructure/nextcloud/21.45-audit-verify.sh
+	bash -n infrastructure/nextcloud/21.80-lifecycle-workflow-verify.sh
+	bash -n infrastructure/nextcloud/21.81-esign-options-verify.sh
+	bash -n infrastructure/search-graph/30.00-overview-verify.sh
+	bash -n infrastructure/search-graph/30.10-connector-verify.sh
+	bash -n infrastructure/search-graph/30.15-acl-inheritance-verify.sh
+	bash -n infrastructure/search-graph/30.70-retention-privacy-verify.sh
 	bash -n infrastructure/secrets-standard/03.20-init-stack-layout.sh
 	bash -n infrastructure/secrets-standard/03.20-generate-secret-file.sh
 	bash -n infrastructure/secrets-standard/03.20-verify-secrets-standard.sh
@@ -61,8 +82,31 @@ verify:
 	bash scripts/prephase/verify_artifact_presence.sh
 	$(PYTHON) scripts/prephase/verify_audit_logging_artifacts.py
 	$(PYTHON) scripts/prephase/verify_auth_modes_artifacts.py
+	$(PYTHON) scripts/prephase/verify_break_glass_recovery_artifacts.py
+	$(PYTHON) scripts/prephase/verify_rbac_role_model_artifacts.py
+	$(PYTHON) scripts/prephase/verify_sso_integration_matrix_artifacts.py
+	$(PYTHON) scripts/prephase/verify_mfa_policy_artifacts.py
 	$(PYTHON) scripts/prephase/verify_identity_provider_ad_ldaps_artifacts.py
 	$(PYTHON) scripts/prephase/verify_identity_provider_local_users_artifacts.py
+	$(PYTHON) scripts/prephase/verify_identity_provider_mfa_artifacts.py
+	$(PYTHON) scripts/prephase/verify_identity_provider_group_role_mapping_artifacts.py
+	$(PYTHON) scripts/prephase/verify_frontend_internal_tls_artifacts.py
+	$(PYTHON) scripts/prephase/verify_ui_sso_flow_artifacts.py
+	$(PYTHON) scripts/prephase/verify_gateway_token_validation_artifacts.py
+	$(PYTHON) scripts/prephase/verify_gateway_rbac_authorization_artifacts.py
+	$(PYTHON) scripts/prephase/verify_gateway_healthchecks_watchdog_artifacts.py
+	$(PYTHON) scripts/prephase/verify_nextcloud_overview_artifacts.py
+	$(PYTHON) scripts/prephase/verify_nextcloud_auth_options_artifacts.py
+	$(PYTHON) scripts/prephase/verify_nextcloud_permissions_model_artifacts.py
+	$(PYTHON) scripts/prephase/verify_nextcloud_group_naming_artifacts.py
+	$(PYTHON) scripts/prephase/verify_nextcloud_project_acl_blueprint_artifacts.py
+	$(PYTHON) scripts/prephase/verify_nextcloud_audit_logging_artifacts.py
+	$(PYTHON) scripts/prephase/verify_nextcloud_document_lifecycle_workflow_artifacts.py
+	$(PYTHON) scripts/prephase/verify_nextcloud_esign_options_artifacts.py
+	$(PYTHON) scripts/prephase/verify_search_knowledge_graph_overview_artifacts.py
+	$(PYTHON) scripts/prephase/verify_search_knowledge_graph_sources_connectors_artifacts.py
+	$(PYTHON) scripts/prephase/verify_search_knowledge_graph_acl_inheritance_artifacts.py
+	$(PYTHON) scripts/prephase/verify_search_knowledge_graph_retention_privacy_artifacts.py
 	$(PYTHON) scripts/prephase/verify_identity_provider_overview_artifacts.py
 	$(PYTHON) scripts/prephase/verify_identity_provider_ports_boundaries_artifacts.py
 	$(PYTHON) scripts/prephase/verify_monitoring_audit_retention_artifacts.py

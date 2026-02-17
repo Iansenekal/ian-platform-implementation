@@ -1,0 +1,21 @@
+[ req ]
+default_bits       = 2048
+prompt             = no
+default_md         = sha256
+distinguished_name = dn
+req_extensions     = req_ext
+
+[ dn ]
+C=ZA
+ST=Gauteng
+L=Johannesburg
+O=Client-Lab
+OU=AI-Platform
+CN=ui.lab.local
+
+[ req_ext ]
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1 = ui.lab.local
+IP.1  = 10.10.5.186

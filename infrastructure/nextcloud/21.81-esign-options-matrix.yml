@@ -1,0 +1,31 @@
+options:
+  A:
+    name: "workflow_receipt_hashing"
+    embedded_pdf_signature: false
+    cloud_runtime_dependency: false
+    assurance_level: "medium_high"
+    requires_internal_pki: false
+  B:
+    name: "embedded_pdf_signature_internal_cert"
+    embedded_pdf_signature: true
+    cloud_runtime_dependency: false
+    assurance_level: "high"
+    requires_internal_pki: true
+  C:
+    name: "per_user_certificate_signature"
+    embedded_pdf_signature: true
+    cloud_runtime_dependency: false
+    assurance_level: "very_high"
+    requires_internal_pki: true
+  D:
+    name: "external_qualified_esign"
+    embedded_pdf_signature: true
+    cloud_runtime_dependency: true
+    assurance_level: "very_high"
+    allowed_default: false
+
+selection_guidance:
+  internal_policy_signoff: "B"
+  safety_sop_risk: "B"
+  low_risk_forms: "A"
+  regulated_contracts: "C"

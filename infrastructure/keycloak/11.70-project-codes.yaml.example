@@ -1,0 +1,14 @@
+# /opt/idp/config/project-codes.yaml
+# Registered project codes (extend per client)
+
+projects:
+  - code: "BANANA-PEEL"
+    name: "Operation Banana Peel"
+  - code: "NIGHT-PENGUIN"
+    name: "Project Night Penguin"
+  - code: "DAD-JOKE"
+    name: "Operation Dad Joke"
+  - code: "LASAGNA"
+    name: "The Lasagna Protocol"
+  - code: "MASTER"
+    name: "Master Chuck Norris"

@@ -1,0 +1,36 @@
+prefixes:
+  global: "AI-"
+  nextcloud: "AI-NC-"
+  service: "AI-SVC-"
+
+platform_groups:
+  - AI-PLATFORM-ADMINS
+  - AI-PLATFORM-SECURITY
+  - AI-PLATFORM-AUDIT-READONLY
+  - AI-PLATFORM-HELPDESK
+  - AI-NC-PLATFORM-ADMINS
+  - AI-NC-AUDIT-READONLY
+  - AI-NC-HELPDESK
+
+project_group_pattern:
+  format: "AI-NC-PROJ-<PROJECTCODE>-<ROLE>"
+  roles:
+    - OWNER
+    - EDIT
+    - VIEW
+  optional_roles:
+    - CONTRIB
+    - AUDIT
+    - LEGALHOLD
+
+project_code_rules:
+  allowed_charset: "A-Z0-9"
+  recommended_min_len: 6
+  recommended_max_len: 14
+  mutable: false
+
+service_accounts:
+  - AI-SVC-SEARCH-NC-INDEXER
+  - AI-SVC-AUTOMATION-N8N-NC
+  - AI-SVC-AUTOMATION-WINDMILL-NC
+  - AI-SVC-BACKUP-NC

@@ -1,0 +1,43 @@
+connectors:
+  - id: nextcloud-primary
+    source_type: nextcloud
+    enabled: true
+    tier: 1
+    scope:
+      include:
+        - /Projects/<CODES>
+      exclude:
+        - /Projects/<CODE>/07-Finance
+        - /Projects/<CODE>/08-Legal
+        - /Projects/<CODE>/09-HR
+    indexing_mode: metadata_default
+    content_extraction_allowlist:
+      - pdf
+      - docx
+      - txt
+    acl_required: true
+
+  - id: smb-optional
+    source_type: smb
+    enabled: false
+    tier: 2
+    scope:
+      include:
+        - //<server>/<share>/<path>
+      exclude: []
+    indexing_mode: metadata_default
+    acl_required: true
+    read_only: true
+
+  - id: m365-optional
+    source_type: m365
+    enabled: false
+    tier: 3
+    scope:
+      include_sites:
+        - <site_id>
+      include_libraries:
+        - <library_id>
+      exclude_paths: []
+    indexing_mode: metadata_default
+    acl_required: true

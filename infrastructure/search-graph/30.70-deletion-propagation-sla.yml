@@ -1,0 +1,16 @@
+deletion_propagation:
+  critical_privacy_scopes:
+    sla_hours: 8
+  standard_scopes:
+    sla_hours: 24
+
+triggers:
+  - source_deleted
+  - acl_narrowed
+  - moved_out_of_scope
+
+required_actions:
+  purge_index_record: true
+  purge_graph_nodes_edges: true
+  prevent_stale_overexposure: true
+  record_audit_event: true

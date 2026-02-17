@@ -1,0 +1,24 @@
+# /opt/gateway/config/rbac.yaml
+# Gateway RBAC policy (platform-level roles)
+
+groups_claim: "groups"
+
+platform_roles:
+  PLATFORM_ADMIN:
+    required_groups:
+      - "AI-PLATFORM-ADMINS"
+
+  SECURITY_AUDITOR:
+    required_groups:
+      - "AI-SECURITY-AUDITORS"
+
+  OPS_READONLY:
+    required_groups:
+      - "AI-OPS-READONLY"
+
+role_precedence:
+  - "PLATFORM_ADMIN"
+  - "SECURITY_AUDITOR"
+  - "OPS_READONLY"
+
+global_bypass_for_platform_admin: false

@@ -1,0 +1,8 @@
+content_class,default_indexing,retention_class,notes
+general_project_docs,metadata+optional_content,RC-02,content allowlist governed
+policies_procedures,metadata+optional_content,RC-03,long-lived derived metadata
+contracts_legal_privileged,metadata_only_default,RC-02_or_RC-03,content requires legal approval
+hr_personnel,metadata_only_default,RC-01_or_RC-02,sensitive exclusions preferred
+finance_records,metadata+limited_optional_content,RC-02,limit sensitive subfolders
+temporary_staging,metadata_only,RC-01,fast auto-purge
+personal_onedrive,disabled_default,N/A,enable only by explicit privacy review

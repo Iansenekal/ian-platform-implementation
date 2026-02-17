@@ -1,0 +1,36 @@
+default_stance: deny_by_default
+
+platform_roles:
+  NC_PLATFORM_ADMIN:
+    description: "Manage Nextcloud platform settings and apps"
+    project_data_access_by_default: false
+  NC_SECURITY_AUDIT_READONLY:
+    description: "Read-only access to security/audit evidence"
+  NC_HELPDESK_OPERATOR:
+    optional: true
+    description: "Assist users without project ACL approval authority"
+
+project_roles:
+  PROJECT_OWNER:
+    can_manage_membership: true
+  PROJECT_EDITOR:
+    can_upload: true
+    can_edit: true
+    can_delete: limited
+  PROJECT_VIEWER:
+    read_only: true
+  PROJECT_CONTRIBUTOR:
+    optional: true
+    upload_only_intent: true
+  PROJECT_AUDITOR:
+    optional: true
+    read_and_export_evidence_only: true
+
+service_roles:
+  SEARCH_INDEXER_SERVICE:
+    interactive_login: false
+    write_access: false
+  AUTOMATION_SERVICE:
+    interactive_login: false
+  BACKUP_SERVICE:
+    interactive_login: false

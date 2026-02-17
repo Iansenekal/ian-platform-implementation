@@ -1,0 +1,24 @@
+/Projects/<PROJECTCODE>/
+  00-Project-Home/
+  01-Admin/
+    01.10-Meetings-Minutes/
+    01.20-Comms/
+    01.30-Action-Register/
+    01.40-Stakeholders/
+  02-Technical/
+    02.10-Architecture/
+    02.20-Configs/
+    02.30-Runbooks/
+    02.40-Diagrams/
+  03-Data/
+    03.10-Inputs/
+    03.20-Exports/
+    03.30-Reports/
+  04-Deliverables/
+    04.10-Drafts/
+    04.20-Final/
+  05-Compliance/
+    05.10-Risk-Register/
+    05.20-POPIA/
+    05.30-Audit-Evidence/
+  06-Archive/

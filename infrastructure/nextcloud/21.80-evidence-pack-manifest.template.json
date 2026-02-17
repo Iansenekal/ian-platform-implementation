@@ -1,0 +1,30 @@
+{
+  "case_id": "CASE-<ID>",
+  "project_code": "<PROJECTCODE>",
+  "document_id": "<DOCUMENT_ID>",
+  "version_id": "<VERSION_ID>",
+  "lifecycle_state": "Signed",
+  "approval_chain": [
+    {
+      "step": 1,
+      "approver_group": "<GROUP>",
+      "actor_user": "<USER>",
+      "action": "Approve",
+      "timestamp": "<UTC_TIMESTAMP>"
+    }
+  ],
+  "hash_manifest": {
+    "algorithm": "SHA-256",
+    "hash_value": "<HEX_DIGEST>"
+  },
+  "signature_manifest": {
+    "signature_type": "<TYPE>",
+    "verification_result": "valid"
+  },
+  "notifications_summary": {
+    "emails_sent": 0,
+    "approve_actions": 0,
+    "reject_actions": 0
+  },
+  "sealed": true
+}

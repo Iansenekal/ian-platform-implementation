@@ -1,0 +1,21 @@
+# /opt/gateway/.env.template
+# Backend Gateway runtime configuration (no secrets in this file)
+
+# Network
+GATEWAY_BIND_HOST=0.0.0.0
+GATEWAY_BIND_PORT=8443
+
+# Trust boundary: only accept forwarded requests from AI-FRONTEND01 reverse proxy
+TRUSTED_PROXY_IP=10.10.5.186
+FORWARDED_HEADERS_ENABLED=true
+
+# OIDC/JWT validation
+OIDC_CONFIG_PATH=/opt/gateway/config/oidc.yaml
+
+# Logging (POPIA-safe)
+LOG_LEVEL=INFO
+LOG_REDACT_TOKENS=true
+
+# Correlation
+CORRELATION_ID_HEADER=X-Correlation-ID
+REQUEST_ID_HEADER=X-Request-ID

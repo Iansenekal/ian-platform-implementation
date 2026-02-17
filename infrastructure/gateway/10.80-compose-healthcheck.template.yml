@@ -1,0 +1,8 @@
+# Compose healthcheck integration template for ai-gateway
+healthcheck:
+  test: ["CMD-SHELL", "/opt/gateway/scripts/healthcheck.sh"]
+  interval: 30s
+  timeout: 5s
+  retries: 3
+  start_period: 30s
+restart: unless-stopped

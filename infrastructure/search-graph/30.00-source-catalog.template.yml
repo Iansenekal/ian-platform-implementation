@@ -1,0 +1,24 @@
+sources:
+  - id: nextcloud-primary
+    type: nextcloud
+    enabled: true
+    mode: metadata_or_content
+    acl_authoritative: true
+  - id: smb-optional
+    type: smb
+    enabled: false
+    mode: metadata_only
+    acl_authoritative: true
+  - id: m365-optional
+    type: m365
+    enabled: false
+    mode: metadata_or_content
+    acl_authoritative: true
+
+extraction_guardrails:
+  allowed_file_types:
+    - pdf
+    - docx
+    - txt
+  max_file_size_mb: 25
+  extraction_timeout_seconds: 30

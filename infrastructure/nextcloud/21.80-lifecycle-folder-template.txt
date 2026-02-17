@@ -1,0 +1,7 @@
+/Projects/<PROJECTCODE>/
+  01-Drafts/
+  02-InReview/
+  03-Approved/
+  04-Signed/
+  05-Archive/
+  99-Evidence-Pack/

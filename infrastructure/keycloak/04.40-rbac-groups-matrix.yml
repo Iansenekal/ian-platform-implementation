@@ -1,0 +1,47 @@
+version: "1.0"
+doc: "docs/04-Identity-Access-MFA/04.40-RoleModel-RBAC-Groups.md"
+
+global_groups:
+  - AI-PLATFORM-ADMINS
+  - AI-IDP-ADMINS
+  - AI-SECURITY-AUDITORS
+  - AI-OPS-SRE
+  - AI-USERS-POWER
+  - AI-USERS-STANDARD
+  - AI-USERS-READONLY
+  - AI-AUTOMATION-OPERATORS
+  - AI-BREAKGLASS-OWNERS
+
+project_group_templates:
+  nextcloud:
+    - AI-NC-PROJ-<CODE>-VIEW
+    - AI-NC-PROJ-<CODE>-EDIT
+    - AI-NC-PROJ-<CODE>-OWNER
+  search:
+    - AI-SEARCH-PROJ-<CODE>-QUERY
+  automation_optional:
+    - AI-AUTO-PROJ-<CODE>-RUN
+
+role_mapping:
+  platform_admin:
+    requires_mfa: true
+    zone_e_allowlist_required: true
+    groups:
+      - AI-PLATFORM-ADMINS
+  security_auditor:
+    requires_mfa: true
+    read_only: true
+    groups:
+      - AI-SECURITY-AUDITORS
+  standard_user:
+    groups:
+      - AI-USERS-STANDARD
+  read_only_user:
+    groups:
+      - AI-USERS-READONLY
+
+enforcement_rules:
+  deny_by_default: true
+  group_based_authorization_only: true
+  audit_group_mapping_changes: true
+  search_acl_inheritance_required: true

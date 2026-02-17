@@ -1,0 +1,32 @@
+# /opt/gateway/config/oidc.yaml
+# Backend Gateway OIDC/JWT validation policy (LAN-only)
+
+issuer_url: "https://id.<domain>"
+discovery_url: "https://id.<domain>/.well-known/openid-configuration"
+
+# Optional override. Prefer discovery when available.
+jwks_url: ""
+
+allowed_algs:
+  - "RS256"
+
+audience_required: true
+audiences:
+  - "ai-gateway"
+  - "api.<domain>"
+
+required_claims:
+  - "sub"
+  - "iss"
+  - "exp"
+  - "iat"
+
+username_claim: "preferred_username"
+email_claim: "email"
+groups_claim: "groups"
+
+clock_skew_seconds: 60
+jwks_cache_ttl_seconds: 900
+
+log_failure_reasons: true
+redact_bearer_token: true

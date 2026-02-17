@@ -1,0 +1,60 @@
+event_taxonomy:
+  authentication:
+    - login_success
+    - login_failure
+    - mfa_challenge_success
+    - mfa_challenge_failure
+    - account_lockout
+    - account_unlock
+    - password_change
+    - password_reset
+    - session_created
+    - session_terminated
+  authorization_admin:
+    - user_created
+    - user_disabled
+    - user_deleted
+    - group_created
+    - group_renamed
+    - group_deleted
+    - group_membership_added
+    - group_membership_removed
+    - permission_changed
+    - admin_setting_changed
+  content_metadata:
+    - file_created
+    - file_modified
+    - file_deleted
+    - file_restored
+    - file_moved
+    - file_renamed
+    - folder_created
+    - folder_deleted
+    - folder_renamed
+    - share_created_internal
+    - share_modified_internal
+    - share_revoked_internal
+  external_sharing:
+    - public_share_created
+    - public_share_accessed
+    - public_share_modified
+    - public_share_revoked
+  service_accounts:
+    - service_auth_success
+    - service_auth_failure
+    - indexer_read_summary
+    - automation_activity_summary
+    - excessive_read_pattern
+
+required_fields:
+  - "@timestamp"
+  - "event.type"
+  - "event.action"
+  - "actor.user"
+  - "source.ip"
+  - "target.path"
+  - "target.projectcode"
+  - "result"
+  - "reason"
+  - "correlation_id"
+  - "tenant"

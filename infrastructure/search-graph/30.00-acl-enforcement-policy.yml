@@ -1,0 +1,15 @@
+acl_enforcement:
+  index_time_acl_tagging: true
+  query_time_filtering: true
+  graph_node_filtering: true
+  graph_edge_filtering: true
+
+anti_leakage:
+  hide_unauthorized_existence: true
+  hide_unauthorized_titles: true
+  hide_unauthorized_snippets: true
+  hide_unauthorized_adjacency: true
+
+claims:
+  principal_type: group_based
+  group_claim_name: groups

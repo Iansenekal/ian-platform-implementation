@@ -1,0 +1,23 @@
+principal_mapping:
+  groups_claim_name: groups
+  canonical_project_pattern: AI-NC-PROJ-<CODE>-<ROLE>
+  roles:
+    - OWNER
+    - EDIT
+    - VIEW
+
+source_mapping:
+  nextcloud:
+    authority: nextcloud-acl
+    map_groups_direct: true
+  smb:
+    authority: ntfs-share-acl
+    map_ad_groups_to_canonical: true
+  m365:
+    authority: graph-permissions
+    map_groups_to_canonical: true
+
+exceptions:
+  user_principals_allowed: false
+  exception_ticket_required: true
+  external_guest_indexing_allowed: false

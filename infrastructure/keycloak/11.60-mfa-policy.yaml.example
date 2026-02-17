@@ -1,0 +1,35 @@
+# /opt/idp/config/mfa-policy.yaml
+# MFA baseline policy (no secrets)
+
+mfa:
+  enabled: true
+  methods:
+    totp:
+      enabled: true
+      required_for_tiers: ["TIER0", "TIER1"]
+    webauthn:
+      enabled: true
+      required_for_tiers: ["TIER0"]
+  recovery_codes:
+    enabled: true
+    min_codes: 10
+    required_for_tiers: ["TIER0", "TIER1"]
+    regenerate_invalidates_old: true
+
+enforcement:
+  block_token_issuance_until_enrolled: true
+  step_up_for_admin_console: true
+
+reset_policy:
+  enabled: true
+  allowed_roles: ["AI-PLATFORM-ADMINS"]
+  requires_approval: true
+  requires_identity_proofing: true
+  post_reset_require_enroll: true
+  severity: "high"
+
+audit:
+  log_mfa_enroll: true
+  log_mfa_reset: true
+  log_recovery_codes_generated: true
+  log_recovery_code_used: true

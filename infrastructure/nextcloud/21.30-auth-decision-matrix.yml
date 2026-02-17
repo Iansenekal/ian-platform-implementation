@@ -1,0 +1,29 @@
+default_mode: "SSO"
+
+auth_modes:
+  SSO:
+    protocols:
+      - OIDC
+      - SAML
+    mfa_source: "idp"
+    requires:
+      - dns_for_id_and_nc
+      - internal_tls_trust
+      - stable_groups_claim
+  AD_LDAPS:
+    ldaps_port: 636
+    mfa_source: "nextcloud_or_upstream_control"
+    requires:
+      - ad_connectivity
+      - internal_ca_trust
+      - least_privileged_bind_account
+  LOCAL_USERS:
+    mfa_source: "nextcloud"
+    requires:
+      - approval_workflow
+      - lockout_policy
+      - quarterly_access_review
+
+fallback_break_glass:
+  enabled: true
+  dual_approval_required: true
