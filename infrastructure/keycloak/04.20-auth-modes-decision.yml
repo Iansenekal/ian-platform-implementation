@@ -1,0 +1,59 @@
+version: "1.0"
+doc: "docs/04-Identity-Access-MFA/04.20-Auth-Modes-AD-vs-LocalUsers.md"
+
+auth_modes:
+  mode_a_ad_integrated:
+    preferred: true
+    requires:
+      - on_prem_ad
+      - ldaps_636
+      - dns_healthy
+      - ntp_synced
+      - least_privilege_bind_account
+    controls:
+      - block_ldap_389
+      - require_ldaps_trust_chain
+      - rotate_bind_secret_90d
+      - map_ad_groups_to_platform_claims
+
+  mode_b_local_users:
+    preferred: false
+    requires:
+      - no_directory_services
+      - local_user_lifecycle_process
+      - monthly_access_review
+    controls:
+      - min_password_length_14
+      - complexity_required
+      - lockout_policy
+      - mfa_required_for_admin_auditor
+
+shared_baseline:
+  - frontend_only_auth_entrypoint_443
+  - idp_single_auth_authority
+  - gateway_token_validation_and_rbac
+  - audited_identity_events
+  - stable_group_naming_convention
+
+group_naming:
+  baseline:
+    - AI-PLATFORM-ADMINS
+    - AI-SECURITY-AUDITORS
+    - AI-USERS-STANDARD
+    - AI-USERS-POWER
+    - AI-USERS-READONLY
+  project:
+    - AI-NC-PROJ-<CODE>-VIEW
+    - AI-NC-PROJ-<CODE>-EDIT
+    - AI-NC-PROJ-<CODE>-OWNER
+    - AI-SEARCH-PROJ-<CODE>-QUERY
+
+migration:
+  local_to_ad:
+    - preserve_group_names
+    - pilot_claim_mapping
+    - disable_local_users_after_cutover
+  ad_to_local:
+    - controlled_exception_only
+    - enforce_mfa_immediately
+    - increase_access_review_frequency

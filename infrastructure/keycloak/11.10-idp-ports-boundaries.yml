@@ -1,0 +1,64 @@
+version: "1.0"
+doc: "docs/11-Backend-Identity-Provider/11.10-Ports-Boundaries.md"
+
+hosts:
+  idp_host: "10.10.5.178"
+  reverse_proxy_host: "10.10.5.179"
+  lan_cidr: "10.10.5.0/24"
+
+ports:
+  public_https:
+    host: reverse_proxy_host
+    port: 443
+    protocol: tcp
+    exposed_to_lan: true
+    allowed_sources:
+      - lan_cidr
+
+  idp_internal_http:
+    host: idp_host
+    port: 8080
+    protocol: tcp
+    exposed_to_lan: false
+    allowed_sources:
+      - reverse_proxy_host
+
+  idp_internal_https_optional:
+    host: idp_host
+    port: 8443
+    protocol: tcp
+    exposed_to_lan: false
+    allowed_sources:
+      - reverse_proxy_host
+
+  ssh_admin:
+    host: idp_host
+    port: 22
+    protocol: tcp
+    exposed_to_lan: admin_only
+    allowed_sources:
+      - zone_e_allowlist
+
+outbound_dependencies:
+  dns:
+    protocol: udp_tcp
+    port: 53
+    allowed_targets:
+      - "10.10.5.160"
+  ntp:
+    protocol: udp
+    port: 123
+    allowed_targets:
+      - internal_ntp_sources
+  ldaps_ad_mode:
+    protocol: tcp
+    port: 636
+    allowed_targets:
+      - domain_controller_ips
+
+requirements:
+  - idp_not_publicly_exposed
+  - ufw_default_deny_incoming
+  - proxy_only_idp_exposure
+  - zone_e_admin_allowlist
+  - admin_tier0_mfa

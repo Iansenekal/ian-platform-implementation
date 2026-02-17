@@ -11,6 +11,17 @@ lint:
 	$(PYTHON) -m compileall -q services tests scripts
 	bash -n tools/pre-commit-secrets-check.sh
 	bash -n scripts/prephase/verify_artifact_presence.sh
+	bash -n infrastructure/audit-logging/03.30-audit-verify.sh
+	bash -n infrastructure/keycloak/04.20-auth-modes-verify.sh
+	bash -n infrastructure/keycloak/11.10-idp-ports-verify.sh
+	bash -n infrastructure/keycloak/11.40-ad-ldaps-verify.sh
+	bash -n infrastructure/keycloak/11.50-local-users-verify.sh
+	bash -n infrastructure/secrets-standard/03.20-init-stack-layout.sh
+	bash -n infrastructure/secrets-standard/03.20-generate-secret-file.sh
+	bash -n infrastructure/secrets-standard/03.20-verify-secrets-standard.sh
+	bash -n infrastructure/firewall/apply-ufw-frontend.sh
+	bash -n infrastructure/firewall/apply-ufw-backend.sh
+	bash -n infrastructure/firewall/verify-ufw.sh
 	bash -n infrastructure/vm-provisioning/hardening/base-hardening.sh
 	bash -n infrastructure/proxmox/networking/render-interfaces.sh
 	bash -n infrastructure/proxmox/networking/81.50-network-verify.sh
@@ -48,6 +59,15 @@ test:
 
 verify:
 	bash scripts/prephase/verify_artifact_presence.sh
+	$(PYTHON) scripts/prephase/verify_audit_logging_artifacts.py
+	$(PYTHON) scripts/prephase/verify_auth_modes_artifacts.py
+	$(PYTHON) scripts/prephase/verify_identity_provider_ad_ldaps_artifacts.py
+	$(PYTHON) scripts/prephase/verify_identity_provider_local_users_artifacts.py
+	$(PYTHON) scripts/prephase/verify_identity_provider_overview_artifacts.py
+	$(PYTHON) scripts/prephase/verify_identity_provider_ports_boundaries_artifacts.py
+	$(PYTHON) scripts/prephase/verify_monitoring_audit_retention_artifacts.py
+	$(PYTHON) scripts/prephase/verify_secrets_standard_artifacts.py
+	$(PYTHON) scripts/prephase/verify_ufw_policy_artifacts.py
 	$(PYTHON) scripts/prephase/verify_network_plan.py
 	$(PYTHON) scripts/prephase/verify_storage_plan.py
 	$(PYTHON) scripts/prephase/verify_vm_blueprints.py

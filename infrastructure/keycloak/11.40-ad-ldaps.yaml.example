@@ -1,0 +1,38 @@
+# /opt/idp/config/ad-ldaps.yaml
+# Active Directory integration via LDAPS (no secrets)
+
+directory:
+  type: "active_directory"
+  protocol: "ldaps"
+  servers:
+    - host: "<DC1_FQDN_OR_IP>"
+      port: 636
+    - host: "<DC2_FQDN_OR_IP>"
+      port: 636
+
+  tls:
+    verify_cert: true
+    # ca_bundle_path: "/opt/idp/config/adcs-ca-bundle.crt"
+
+  bind:
+    dn_file: "/opt/idp/secrets/ad_bind_dn"
+    password_file: "/opt/idp/secrets/ad_bind_password"
+
+  base_dn: "DC=lab,DC=local"
+  users_base_dn: "OU=Users,DC=lab,DC=local"
+  groups_base_dn: "OU=Groups,DC=lab,DC=local"
+
+  user_filter: "(&(objectClass=user)(sAMAccountName={username}))"
+  username_attribute: "sAMAccountName"
+  display_name_attribute: "displayName"
+  email_attribute: "mail"
+
+  group_membership_attribute: "memberOf"
+  nested_groups: true
+
+  allowed_user_attributes:
+    - "dn"
+    - "sAMAccountName"
+    - "displayName"
+    - "mail"
+    - "memberOf"

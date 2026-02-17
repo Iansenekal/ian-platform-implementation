@@ -6,6 +6,52 @@ import unittest
 class Phase1029ArtifactTests(unittest.TestCase):
     def test_required_sprint_a_files_exist(self):
         required = [
+            "docs/02-Ports-Trust-Boundaries/02.20-UFW-Policy-Model.md",
+            "docs/03-Security-POPIA/03.20-Secrets-Standard.md",
+            "docs/03-Security-POPIA/03.30-Audit-Logging.md",
+            "docs/04-Identity-Access-MFA/04.20-Auth-Modes-AD-vs-LocalUsers.md",
+            "docs/11-Backend-Identity-Provider/11.00-Overview.md",
+            "docs/11-Backend-Identity-Provider/11.10-Ports-Boundaries.md",
+            "docs/11-Backend-Identity-Provider/11.40-AD-Integration-LDAPS.md",
+            "docs/11-Backend-Identity-Provider/11.50-Local-Users-No-Directory.md",
+            "docs/50-Monitoring-Logging/50.30-Audit-Events-and-Retention.md",
+            "infrastructure/firewall/README.md",
+            "infrastructure/firewall/vars.env.example",
+            "infrastructure/firewall/apply-ufw-frontend.sh",
+            "infrastructure/firewall/apply-ufw-backend.sh",
+            "infrastructure/firewall/verify-ufw.sh",
+            "infrastructure/audit-logging/README.md",
+            "infrastructure/audit-logging/03.30-audit-inputs.env.example",
+            "infrastructure/audit-logging/03.30-audit-sources.yml",
+            "infrastructure/audit-logging/03.30-audit-verify.sh",
+            "infrastructure/audit-logging/03.30-review-routine.template.md",
+            "infrastructure/audit-logging/03.30-evidence-checklist.md",
+            "infrastructure/keycloak/11.10-idp-ports-boundaries.yml",
+            "infrastructure/keycloak/11.10-idp-ports-verify.sh",
+            "infrastructure/keycloak/11.40-ad-ldaps-inputs.env.example",
+            "infrastructure/keycloak/11.40-ad-ldaps.yaml.example",
+            "infrastructure/keycloak/11.40-group-mapping.yaml.example",
+            "infrastructure/keycloak/11.40-ad-ldaps-verify.sh",
+            "infrastructure/keycloak/11.40-evidence-checklist.md",
+            "infrastructure/keycloak/11.50-local-users-inputs.env.example",
+            "infrastructure/keycloak/11.50-local-users.yaml.example",
+            "infrastructure/keycloak/11.50-local-users-verify.sh",
+            "infrastructure/keycloak/11.50-local-users-access-review.template.md",
+            "infrastructure/keycloak/11.50-evidence-checklist.md",
+            "infrastructure/keycloak/04.20-auth-modes-decision.yml",
+            "infrastructure/keycloak/04.20-auth-modes-verify.sh",
+            "infrastructure/audit-logging/50.30-retention-policy-matrix.yml",
+            "infrastructure/audit-logging/50.30-legal-hold-request.template.md",
+            "infrastructure/audit-logging/50.30-quarterly-access-review.template.md",
+            "infrastructure/audit-logging/50.30-evidence-checklist.md",
+            "infrastructure/secrets-standard/README.md",
+            "infrastructure/secrets-standard/03.20-stack-inputs.env.example",
+            "infrastructure/secrets-standard/03.20-secrets-README.template.txt",
+            "infrastructure/secrets-standard/03.20-env.template.example",
+            "infrastructure/secrets-standard/03.20-init-stack-layout.sh",
+            "infrastructure/secrets-standard/03.20-generate-secret-file.sh",
+            "infrastructure/secrets-standard/03.20-verify-secrets-standard.sh",
+            "infrastructure/secrets-standard/03.20-evidence-checklist.md",
             "infrastructure/proxmox/networking/bridge-vlan-plan.yml",
             "infrastructure/proxmox/networking/README.md",
             "infrastructure/proxmox/networking/81.50-network-inputs.env.example",
@@ -126,6 +172,15 @@ class Phase1029ArtifactTests(unittest.TestCase):
             "docs/83-PrePhase-Integration/83.20-Security-Smoke-Tests.md",
             "docs/83-PrePhase-Integration/83.30-PreBootstrap-GoLive-Gate.md",
             "scripts/prephase/verify_artifact_presence.sh",
+            "scripts/prephase/verify_audit_logging_artifacts.py",
+            "scripts/prephase/verify_auth_modes_artifacts.py",
+            "scripts/prephase/verify_identity_provider_ad_ldaps_artifacts.py",
+            "scripts/prephase/verify_identity_provider_local_users_artifacts.py",
+            "scripts/prephase/verify_identity_provider_overview_artifacts.py",
+            "scripts/prephase/verify_identity_provider_ports_boundaries_artifacts.py",
+            "scripts/prephase/verify_monitoring_audit_retention_artifacts.py",
+            "scripts/prephase/verify_secrets_standard_artifacts.py",
+            "scripts/prephase/verify_ufw_policy_artifacts.py",
             "scripts/prephase/verify_network_plan.py",
             "scripts/prephase/verify_storage_plan.py",
             "scripts/prephase/verify_vm_blueprints.py",
@@ -151,6 +206,15 @@ class Phase1029ArtifactTests(unittest.TestCase):
 
     def test_prephase_verification_scripts_run(self):
         subprocess.run(["bash", "scripts/prephase/verify_artifact_presence.sh"], check=True)
+        subprocess.run(["python3", "scripts/prephase/verify_audit_logging_artifacts.py"], check=True)
+        subprocess.run(["python3", "scripts/prephase/verify_auth_modes_artifacts.py"], check=True)
+        subprocess.run(["python3", "scripts/prephase/verify_identity_provider_ad_ldaps_artifacts.py"], check=True)
+        subprocess.run(["python3", "scripts/prephase/verify_identity_provider_local_users_artifacts.py"], check=True)
+        subprocess.run(["python3", "scripts/prephase/verify_identity_provider_overview_artifacts.py"], check=True)
+        subprocess.run(["python3", "scripts/prephase/verify_identity_provider_ports_boundaries_artifacts.py"], check=True)
+        subprocess.run(["python3", "scripts/prephase/verify_monitoring_audit_retention_artifacts.py"], check=True)
+        subprocess.run(["python3", "scripts/prephase/verify_secrets_standard_artifacts.py"], check=True)
+        subprocess.run(["python3", "scripts/prephase/verify_ufw_policy_artifacts.py"], check=True)
         subprocess.run(["python3", "scripts/prephase/verify_network_plan.py"], check=True)
         subprocess.run(["python3", "scripts/prephase/verify_storage_plan.py"], check=True)
         subprocess.run(["python3", "scripts/prephase/verify_vm_blueprints.py"], check=True)

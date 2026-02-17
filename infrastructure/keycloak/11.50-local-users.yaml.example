@@ -1,0 +1,36 @@
+# /opt/idp/config/local-users.yaml
+# Local-user mode baseline (no AD/LDAP dependency)
+
+identity_mode: "local_users"
+realm: "platform"
+
+password_policy:
+  min_length: 14
+  complexity_required: true
+  history_count: 5
+  temporary_password_expiry_hours: 24
+
+lockout_policy:
+  enabled: true
+  max_failures: 5
+  lockout_minutes: 15
+  failure_reset_seconds: 900
+
+mfa:
+  required_roles:
+    - "AI-PLATFORM-ADMINS"
+    - "AI-SECURITY-AUDITORS"
+  required_action: "CONFIGURE_TOTP"
+
+lifecycle:
+  onboarding_requires_ticket: true
+  disable_on_offboarding: true
+  monthly_access_review_required: true
+  break_glass_account_controlled: true
+
+audit:
+  emit_events:
+    - "user.create"
+    - "user.disable"
+    - "user.role.update"
+    - "user.delete"

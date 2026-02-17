@@ -24,6 +24,7 @@ Last Updated: 2026-02-17
 - [x] A2 Build infrastructure skeleton for 10-29 under `infrastructure/`
 - [x] A3 Add executable pre-phase verification scripts under `scripts/prephase/`
 - [x] A4 Add tests for 10-29 artifacts and checks under `tests/infrastructure/`
+- [x] A9 Add 02.20 UFW policy runbook + deterministic firewall scripts + CI artifact verification
 
 ## Sprint B (Current) - Keycloak + Gateway + Secrets/Audit Runtime Controls + CI
 
@@ -40,6 +41,14 @@ Last Updated: 2026-02-17
 - [x] B1 Add Keycloak deployment scaffold (`infrastructure/keycloak/`)
 - [x] B2 Add gateway deployment scaffold (`infrastructure/gateway/`)
 - [x] B3 Add secrets management controls (`platform/security/secrets-management/`, `tools/pre-commit-secrets-check.sh`)
+- [x] B16 Add 03.20 secrets standard runbook + deterministic secrets scripts + CI artifact verification
+- [x] B17 Add 03.30 audit logging runbook + source map + verification automation
+- [x] B18 Add 50.30 audit events/retention policy doc + legal-hold/access-review templates + CI verification
+- [x] B19 Add 11.00 identity provider overview baseline + CI artifact verification
+- [x] B20 Add 11.10 IdP ports/boundaries baseline + verification script + CI artifact checks
+- [x] B21 Add 04.20 AD-vs-Local auth mode standard + decision matrix + CI verification
+- [x] B22 Add 11.40 AD-LDAPS integration templates + verification automation
+- [x] B23 Add 11.50 local-users (no-directory) runbook + templates + verification automation
 - [x] B4 Add runtime audit-event emission controls in `services/reference-app/app.py`
 - [x] B5 Expand CI/Makefile quality gates for Sprint A and B checks
 - [x] B6 Wire full OIDC SSO (gateway <-> keycloak) with token validation middleware
@@ -85,6 +94,7 @@ Last Updated: 2026-02-17
 - [ ] 02 Client pack site variables finalized
 
 ### 10-29 Infrastructure + Pre-Phase
+- [ ] 02.20 UFW policy applied on AI-FRONTEND01 and AI-DATA01 (repo artifacts + CI checks added; host execution evidence pending)
 - [ ] 10 Proxmox install hardening implementation
 - [ ] 11 Networking bridge/VLAN implementation
 - [ ] 12 Storage implementation and verification (repo gates added; host evidence pending)
@@ -100,10 +110,10 @@ Last Updated: 2026-02-17
 - [ ] 22 Pre-phase go-live gate signed
 
 ### 30-59 Core Platform Rollout
-- [ ] 30 Bootstrap baseline fully operationalized
-- [ ] 31 Keycloak deployment productionized
-- [ ] 32 Keycloak AD/LDAPS integration
-- [ ] 33 Keycloak local users mode
+- [ ] 30 Bootstrap baseline fully operationalized (03.20 secrets standard artifacts added; host execution evidence pending)
+- [ ] 31 Keycloak deployment productionized (11.00/11.10 baselines added; runtime hardening/ops evidence pending)
+- [ ] 32 Keycloak AD/LDAPS integration (04.20 + 11.40 baselines and verification assets added; live LDAPS bind evidence pending)
+- [ ] 33 Keycloak local users mode (04.20 + 11.50 baselines and verification assets added; live user lifecycle evidence pending)
 - [ ] 34 MFA policy enforcement
 - [ ] 35 Group-role RBAC baseline
 - [ ] 36 Frontend ingress + internal TLS
@@ -133,7 +143,7 @@ Last Updated: 2026-02-17
 
 ### 80-99 Monitoring + DR + Day-2 + Final Gate
 - [ ] 80 Monitoring stack deploy + scrape plan
-- [ ] 81 Platform-wide audit + retention implementation
+- [ ] 81 Platform-wide audit + retention implementation (50.30 policy/matrix/templates added; runtime emitter and purge orchestration expansion pending)
 - [ ] 82 Domain metrics dashboards
 - [ ] 90 Backup scope + schedules
 - [ ] 91 Restore procedure proof

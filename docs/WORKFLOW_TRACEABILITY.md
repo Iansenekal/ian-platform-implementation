@@ -15,13 +15,15 @@ Status legend:
 | 00 | Workstations VS Code setup | `.devcontainer/devcontainer.json`, `tools/setup-dev.sh` | DONE | Baseline | Devcontainer launches and setup script exits 0 |
 | 01 | Repo skeleton variables/evidence | `README.md`, `REPO_CONVENTIONS.md`, `docs/PLATFORM_AUDIT.md` | DONE | Baseline | CI green + required docs present |
 | 02 | Client pack/site variables | `configs/client-rollout-variables.example.yaml` | PARTIAL | Sprint A | Client-specific values finalized per site |
-| 03.30 | Audit logging standard baseline | `platform/observability/audit-events/EVENT_SCHEMA.md` | DONE | Baseline | Event schema adopted by services |
+| 03.20 | Secrets standard | `docs/03-Security-POPIA/03.20-Secrets-Standard.md`, `infrastructure/secrets-standard/03.20-init-stack-layout.sh`, `infrastructure/secrets-standard/03.20-generate-secret-file.sh`, `infrastructure/secrets-standard/03.20-verify-secrets-standard.sh`, `scripts/prephase/verify_secrets_standard_artifacts.py` | PARTIAL | Sprint B | Secrets layout/permissions applied on target stacks with verification evidence |
+| 03.30 | Audit logging standard baseline | `docs/03-Security-POPIA/03.30-Audit-Logging.md`, `platform/observability/audit-events/EVENT_SCHEMA.md`, `infrastructure/audit-logging/03.30-audit-sources.yml`, `infrastructure/audit-logging/03.30-audit-verify.sh`, `scripts/prephase/verify_audit_logging_artifacts.py` | DONE | Baseline | Event schema + rollout/verification artifacts present and CI-validated |
 | 06.40 | Compliance evidence preservation baseline | `docs/PLATFORM_AUDIT.md` | PARTIAL | Sprint B+ | Automated evidence pack generation |
 
 ## 10-29 Infrastructure + Pre-Phase
 
 | ID | Workflow Item | Primary Repo Artifact | Status | Sprint/Phase | Gate to Close |
 |---|---|---|---|---|---|
+| 02.20 | UFW policy model | `docs/02-Ports-Trust-Boundaries/02.20-UFW-Policy-Model.md`, `infrastructure/firewall/vars.env.example`, `infrastructure/firewall/apply-ufw-frontend.sh`, `infrastructure/firewall/apply-ufw-backend.sh`, `infrastructure/firewall/verify-ufw.sh`, `scripts/prephase/verify_ufw_policy_artifacts.py` | PARTIAL | Sprint A | Policies applied on both VMs and V1-V5 verification evidence captured |
 | 10 | Proxmox install hardening | `infrastructure/proxmox/install-hardening/README.md` | PARTIAL | Sprint A | Automated install/hardening scripts validated on target host |
 | 11 | Proxmox networking | `infrastructure/proxmox/networking/README.md`, `infrastructure/proxmox/networking/81.60-network-verification.sh` | PARTIAL | Sprint A | 81.50 implementation + 81.60 verification evidence validated on target host |
 | 12 | Proxmox storage | `infrastructure/proxmox/storage/README.md`, `infrastructure/proxmox/storage/81.90-storage-verification.sh` | PARTIAL | Sprint A | 81.70 decision + 81.80 implementation + 81.90 verification evidence validated on target host |
@@ -41,9 +43,9 @@ Status legend:
 | ID | Workflow Item | Primary Repo Artifact | Status | Sprint/Phase | Gate to Close |
 |---|---|---|---|---|---|
 | 30 | Platform bootstrap baseline | `platform/observability/*`, `platform/security/secrets-management/*` | PARTIAL | Sprint B | Secrets + audit runtime controls active in services |
-| 31 | Identity provider deploy (Keycloak) | `infrastructure/keycloak/docker-compose.yml`, `scripts/smoke/keycloak_realm_bootstrap.sh` | PARTIAL | Sprint B | Keycloak health + admin login + realm bootstrap |
-| 32 | Identity mode A (AD/LDAPS) | `infrastructure/keycloak/README.md` | NOT_STARTED | Post-Sprint B | LDAPS bind tested |
-| 33 | Identity mode B (local users) | `infrastructure/keycloak/README.md` | PARTIAL | Sprint B | Local realm users tested |
+| 31 | Identity provider deploy (Keycloak) | `docs/11-Backend-Identity-Provider/11.00-Overview.md`, `docs/11-Backend-Identity-Provider/11.10-Ports-Boundaries.md`, `infrastructure/keycloak/docker-compose.yml`, `infrastructure/keycloak/realm/realm-export.json`, `infrastructure/keycloak/11.10-idp-ports-boundaries.yml`, `infrastructure/keycloak/11.10-idp-ports-verify.sh`, `scripts/smoke/keycloak_realm_bootstrap.sh`, `scripts/prephase/verify_identity_provider_overview_artifacts.py`, `scripts/prephase/verify_identity_provider_ports_boundaries_artifacts.py` | PARTIAL | Sprint B | Keycloak health + admin login + realm bootstrap + 11.00/11.10 baselines finalized |
+| 32 | Identity mode A (AD/LDAPS) | `docs/04-Identity-Access-MFA/04.20-Auth-Modes-AD-vs-LocalUsers.md`, `docs/11-Backend-Identity-Provider/11.40-AD-Integration-LDAPS.md`, `infrastructure/keycloak/04.20-auth-modes-decision.yml`, `infrastructure/keycloak/04.20-auth-modes-verify.sh`, `infrastructure/keycloak/11.40-ad-ldaps.yaml.example`, `infrastructure/keycloak/11.40-group-mapping.yaml.example`, `infrastructure/keycloak/11.40-ad-ldaps-verify.sh`, `scripts/prephase/verify_auth_modes_artifacts.py`, `scripts/prephase/verify_identity_provider_ad_ldaps_artifacts.py` | PARTIAL | Sprint B | LDAPS bind tested and AD group claim mapping validated |
+| 33 | Identity mode B (local users) | `docs/04-Identity-Access-MFA/04.20-Auth-Modes-AD-vs-LocalUsers.md`, `docs/11-Backend-Identity-Provider/11.50-Local-Users-No-Directory.md`, `infrastructure/keycloak/04.20-auth-modes-decision.yml`, `infrastructure/keycloak/04.20-auth-modes-verify.sh`, `infrastructure/keycloak/11.50-local-users.yaml.example`, `infrastructure/keycloak/11.50-local-users-verify.sh`, `infrastructure/keycloak/11.50-local-users-access-review.template.md`, `scripts/prephase/verify_auth_modes_artifacts.py`, `scripts/prephase/verify_identity_provider_local_users_artifacts.py` | PARTIAL | Sprint B | Local user lifecycle + MFA + monthly access review verified |
 | 34 | MFA policy | `infrastructure/keycloak/realm/realm-export.json` | PARTIAL | Sprint B | MFA policy enabled and verified |
 | 35 | Group-to-role mapping (RBAC) | `infrastructure/keycloak/realm/realm-export.json` | PARTIAL | Sprint B | Role mappings validated in test realm |
 | 36 | Frontend ingress + internal TLS | `infrastructure/gateway/nginx/nginx.conf` | PARTIAL | Sprint B | TLS cert integration and ingress test |
@@ -79,7 +81,7 @@ Status legend:
 | ID | Workflow Item | Primary Repo Artifact | Status | Sprint/Phase | Gate to Close |
 |---|---|---|---|---|---|
 | 80 | Monitoring stack + scrape plan | `platform/observability/metrics/prometheus.yml`, `services/reference-app/docker-compose.yml` | PARTIAL | Sprint B | Production scrape targets + dashboards complete |
-| 81 | Audit events + retention (platform-wide) | `platform/observability/audit-events/*` | PARTIAL | Sprint B+ | Platform services emit to schema |
+| 81 | Audit events + retention (platform-wide) | `docs/50-Monitoring-Logging/50.30-Audit-Events-and-Retention.md`, `platform/observability/audit-events/*`, `infrastructure/audit-logging/50.30-retention-policy-matrix.yml`, `infrastructure/audit-logging/50.30-legal-hold-request.template.md`, `infrastructure/audit-logging/50.30-quarterly-access-review.template.md`, `scripts/prephase/verify_monitoring_audit_retention_artifacts.py` | PARTIAL | Sprint B+ | Platform services emit to schema and retention/purge evidence workflow is active |
 | 82 | Workflow/transcription/eSign dashboards | `platform/observability/metrics/alert-rules.yml` | PARTIAL | Future | Domain dashboards in Grafana |
 | 90 | Backup scope + schedules | `infrastructure/backup/` (planned) | NOT_STARTED | Future | Backup policy implemented |
 | 91 | Restore procedure test proof | `infrastructure/backup/` (planned) | NOT_STARTED | Future | Successful restore evidence |

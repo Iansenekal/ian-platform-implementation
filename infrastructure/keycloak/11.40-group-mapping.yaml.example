@@ -1,0 +1,30 @@
+# /opt/idp/config/group-mapping.yaml
+# AD group -> platform group mapping
+
+token_groups_claim: "groups"
+
+platform_groups:
+  - ad_group_dn: "CN=AI-Platform-Admins,OU=Groups,DC=lab,DC=local"
+    emit_group: "AI-PLATFORM-ADMINS"
+  - ad_group_dn: "CN=AI-Security-Auditors,OU=Groups,DC=lab,DC=local"
+    emit_group: "AI-SECURITY-AUDITORS"
+  - ad_group_dn: "CN=AI-Ops-Readonly,OU=Groups,DC=lab,DC=local"
+    emit_group: "AI-OPS-READONLY"
+
+project_groups:
+  - ad_group_dn: "CN=PROJ-BANANA-PEEL-VIEW,OU=Groups,DC=lab,DC=local"
+    project_code: "BANANA-PEEL"
+    role: "VIEW"
+    emit_group: "AI-NC-PROJ-BANANA-PEEL-VIEW"
+  - ad_group_dn: "CN=PROJ-BANANA-PEEL-EDIT,OU=Groups,DC=lab,DC=local"
+    project_code: "BANANA-PEEL"
+    role: "EDIT"
+    emit_group: "AI-NC-PROJ-BANANA-PEEL-EDIT"
+  - ad_group_dn: "CN=PROJ-BANANA-PEEL-OWNER,OU=Groups,DC=lab,DC=local"
+    project_code: "BANANA-PEEL"
+    role: "OWNER"
+    emit_group: "AI-NC-PROJ-BANANA-PEEL-OWNER"
+
+defaults:
+  emit_unmapped_ad_groups: false
+  on_missing_group: "ignore"

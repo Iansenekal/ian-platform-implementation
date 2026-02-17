@@ -1,0 +1,88 @@
+version: "1.0"
+standard: "03.30"
+
+sources:
+  reverse_proxy:
+    events:
+      - api_access
+      - tls_handshake_error
+    required_fields:
+      - timestamp
+      - source_ip
+      - request_id
+      - correlation_id
+      - status
+    index: gateway-audit
+
+  gateway_api:
+    events:
+      - api_call
+      - rbac_decision
+      - admin_change
+    required_fields:
+      - timestamp
+      - event_type
+      - actor
+      - source_ip
+      - target
+      - action
+      - result
+      - correlation_id
+    index: gateway-audit
+
+  identity_provider:
+    events:
+      - login_success
+      - login_failure
+      - mfa_challenge
+      - role_change
+    required_fields:
+      - timestamp
+      - event_type
+      - actor
+      - source_ip
+      - result
+    index: idp-audit
+
+  nextcloud:
+    events:
+      - file_upload
+      - file_download
+      - file_share
+      - file_delete
+      - permission_change
+    required_fields:
+      - timestamp
+      - event_type
+      - actor
+      - target
+      - result
+      - correlation_id
+    index: nextcloud-audit
+
+  search_graph:
+    events:
+      - query_executed
+      - reindex_request
+      - connector_update
+    required_fields:
+      - timestamp
+      - event_type
+      - actor
+      - target
+      - result
+      - correlation_id
+    index: search-audit
+
+  system:
+    events:
+      - ssh_auth
+      - sudo_action
+      - service_restart
+      - firewall_change
+    required_fields:
+      - timestamp
+      - event_type
+      - actor
+      - result
+    index: system-audit

@@ -1,0 +1,50 @@
+version: "1.0"
+policy_doc: "docs/50-Monitoring-Logging/50.30-Audit-Events-and-Retention.md"
+timezone: "Africa/Johannesburg"
+
+retention:
+  authentication_mfa:
+    priority: P0
+    retention_days_min: 180
+    retention_days_default: 365
+    purge_mode: index_age
+    access_class: security_auditor_ro
+
+  admin_role_changes:
+    priority: P0
+    retention_days_default: 365
+    purge_mode: index_age
+    access_class: security_auditor_ro
+
+  automation_execution_metadata:
+    priority: P1
+    retention_days_min: 90
+    retention_days_default: 180
+    purge_mode: index_age
+    access_class: ops_limited_security
+
+  file_share_metadata:
+    priority: P0
+    retention_days_default: 180
+    purge_mode: index_age
+    access_class: security_auditor_ro
+
+  system_security_controls:
+    priority: P0
+    retention_days_min: 180
+    retention_days_default: 365
+    purge_mode: index_age
+    access_class: security_only
+
+evidence_requirements:
+  - quarterly_access_review
+  - purge_execution_logs
+  - incident_evidence_pack
+  - legal_hold_approval_records
+
+legal_hold:
+  required_approvers:
+    - compliance_officer
+    - security_owner
+  requires_end_date: true
+  archive_mode: read_only

@@ -1,0 +1,8 @@
+# Non-secret runtime configuration template
+# Do not place secrets in this file.
+
+APP_ENV=production
+APP_PORT=443
+OIDC_ISSUER_URL=https://idp.lab.local/realms/platform
+DB_HOST=127.0.0.1
+DB_PORT=5432
