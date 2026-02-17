@@ -1,0 +1,17 @@
+version: 1
+purge:
+  automated_required: true
+  schedule_required: true
+  emit_audit_events:
+    - PurgeStarted
+    - PurgeCompleted
+  authorized_roles:
+    - compliance_admin
+    - secops_admin
+storage_controls:
+  central_logs_lifecycle_expiry_required: true
+  smtp_relay_logrotate_required: true
+  secure_delete_optional: true
+privacy_defaults:
+  central_recipient_logging_mode: count_or_hash
+  central_message_body_logging_allowed: false

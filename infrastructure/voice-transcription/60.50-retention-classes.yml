@@ -1,0 +1,22 @@
+retention_classes:
+  VOICE-30D:
+    days: 30
+    purge_evidence_required: true
+  VOICE-90D:
+    days: 90
+    purge_evidence_required: true
+  VOICE-1Y:
+    days: 365
+    purge_evidence_required: true
+  VOICE-3Y:
+    days: 1095
+    purge_evidence_required: true
+  VOICE-7Y:
+    days: 2555
+    purge_evidence_required: true
+  VOICE-LEGAL-HOLD:
+    days: null
+    purge_evidence_required: true
+    requires_hold_release: true
+
+default_retention_start_event: created_at

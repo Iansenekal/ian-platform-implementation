@@ -1,0 +1,5 @@
+backup_item,frequency,retention_days,notes
+windmill_database,daily,30-90,align_to_rpo_rto
+script_flow_exports,on_change_plus_daily,180-365,no_secrets_in_exports
+config_templates,on_change_plus_weekly,180,no_secrets_in_templates
+audit_evidence_pack,weekly,180-365,required_for_investigations

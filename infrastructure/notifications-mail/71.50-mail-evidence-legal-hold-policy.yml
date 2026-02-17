@@ -1,0 +1,12 @@
+version: 1
+legal_hold:
+  supported: true
+  scope:
+    - evidence_pack_receipts
+    - correlated_audit_events
+  correlation_key: correlation_id
+  retain_email_body_required: false
+exceptions:
+  smtp_log_retention_extension_requires_approval: true
+  exception_time_box_required: true
+  exception_audit_required: true

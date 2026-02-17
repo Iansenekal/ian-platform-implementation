@@ -1,0 +1,20 @@
+version: 1
+source_of_truth: nextcloud
+index_acl_field: acl_subjects
+enforcement:
+  gateway_filter_required: true
+  ui_only_filter_forbidden: true
+  query_time_intersection_required: true
+  no_hint_on_acl_fail: true
+snippet_policy:
+  Restricted:
+    enabled: false
+  Confidential:
+    enabled: policy_controlled
+  Internal:
+    enabled: true
+  Public:
+    enabled: true
+privacy:
+  unauthorized_results_placeholder: false
+  restricted_snippet_default: disabled

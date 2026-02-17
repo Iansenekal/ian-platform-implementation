@@ -1,0 +1,28 @@
+version: 1
+default_policy: deny
+allowed_destinations:
+  - name: backend_gateway
+    port: 443
+    purpose: workflow_api
+    restriction: internal_tls_allowlist
+  - name: nextcloud
+    port: 443
+    purpose: file_actions
+    restriction: scoped_service_account
+  - name: postgres
+    port: 5432
+    purpose: workflow_state
+    restriction: localhost_preferred
+  - name: opensearch
+    port: 9200
+    purpose: reporting_alerts
+    restriction: read_only_default
+  - name: identity_provider
+    port: 443
+    purpose: sso_token_validation
+    restriction: lan_only
+  - name: email_relay
+    ports: [25, 587]
+    purpose: internal_notifications
+    restriction: lan_only
+external_outbound_requires_explicit_approval: true

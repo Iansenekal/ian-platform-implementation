@@ -1,0 +1,5 @@
+backup_item,frequency,retention_days,notes
+n8n_database,daily,30-90,align_with_client_rpo
+workflow_exports,on_change_plus_daily,180-365,sanitized_only
+config_templates,on_change_plus_weekly,180,no_inline_secrets
+audit_evidence_pack,weekly,180-365,investigation_support

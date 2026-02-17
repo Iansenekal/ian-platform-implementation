@@ -1,0 +1,10 @@
+version: 1
+session_controls:
+  admin_session_lifetime: short
+  operator_builder_session_lifetime: standard
+  idle_timeout_required: true
+  reauth_for_sensitive_actions: true
+lockout_controls:
+  idp_lockout_policy_required: true
+network_controls:
+  lan_allowlist_required: true

@@ -1,0 +1,21 @@
+version: 1
+alerts:
+  - id: voice_file_shared_external
+    when_event: VOICE_FILE_SHARED
+    severity: high
+    condition: share_type == "external"
+  - id: voice_job_failed_repeated
+    when_event: VOICE_JOB_FAILED
+    severity: high
+    threshold: ">=3 in 15m per worker_id"
+  - id: voice_index_queued_without_gate
+    when_event: VOICE_INDEX_QUEUED
+    severity: critical
+    condition: "final_state != true OR review_approved != true"
+  - id: voice_reclassified_restricted_without_approval
+    when_event: VOICE_RECLASSIFIED
+    severity: high
+    condition: "to_label == 'Restricted' AND compliance_approval_ref missing"
+  - id: voice_unauthorized_access
+    when_event: VOICE_SECURITY_UNAUTHORIZED_ACCESS
+    severity: high

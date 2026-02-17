@@ -1,0 +1,28 @@
+version: 1
+required_event_fields:
+  - correlation_id
+  - document_id
+  - document_version
+  - document_sha256_ref
+  - workflow_instance_id
+  - step_id
+  - actor_subject
+  - actor_roles
+  - action
+  - decision
+  - timestamp_utc
+  - mfa_context
+  - policy_version
+minimization:
+  document_content_logging_forbidden: true
+  token_secret_logging_forbidden: true
+  pii_minimized: true
+event_types:
+  - WORKFLOW_SUBMITTED
+  - APPROVAL_STEP_ASSIGNED
+  - APPROVAL_REMINDER_SENT
+  - APPROVAL_ESCALATED
+  - APPROVED
+  - REJECTED
+  - REROUTED
+  - WORKFLOW_COMPLETED

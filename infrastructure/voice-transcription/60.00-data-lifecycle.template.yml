@@ -1,0 +1,13 @@
+data_lifecycle:
+  - stage: capture
+  - stage: ingest
+  - stage: transcribe
+  - stage: quality_gate
+  - stage: store
+  - stage: index
+  - stage: link_graph
+  - stage: retain_purge
+
+acl:
+  inherited_from_source: true
+  deny_by_default: true

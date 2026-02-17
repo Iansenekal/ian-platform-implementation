@@ -1,0 +1,13 @@
+version: 1
+hash_algorithm: SHA-256
+hash_compute_location: server_side
+hash_input: exact_stored_file_bytes
+recording:
+  receipt_record_required: true
+  structured_audit_record_required: true
+  evidence_summary_record_required: true
+logging:
+  generic_log_hash_leakage_forbidden: true
+workflow_guards:
+  block_approval_on_hash_failure: true
+  invalidate_instance_on_mid_workflow_byte_change: true

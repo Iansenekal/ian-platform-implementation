@@ -1,0 +1,17 @@
+{
+  "export_id": "exp_2026_0001",
+  "document_id": "POPIA-Policy-001",
+  "document_version": "v1.1",
+  "workflow_instance_id": "wf_2026_0101",
+  "bundle_created_at": "2026-02-10T08:30:00Z",
+  "created_by": "user:auditor",
+  "included_artifacts": [
+    "00-summary.json",
+    "10-workflow-instance.json",
+    "20-approvals/",
+    "30-signatures/",
+    "60-policy-context/"
+  ],
+  "verification_public_key_ref": "/opt/<stack>/trust/workflow-signing-pub.pem",
+  "minimization_applied": true
+}

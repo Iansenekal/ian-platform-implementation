@@ -1,0 +1,28 @@
+version: 1
+actions:
+  approve:
+    allowed: true
+    preconditions:
+      - approver_in_scope_group
+      - mfa_verified
+      - not_author
+      - step_is_current
+    outputs:
+      - approval_record_created
+      - advance_to_next_step_or_complete
+    audit_event: APPROVED
+  reject:
+    allowed: true
+    preconditions:
+      - approver_in_scope_group
+      - step_is_current
+    required_inputs:
+      - reject_reason
+    outputs:
+      - transition_to_rework
+      - notify_author
+      - preserve_rejection_record
+    audit_event: REJECTED
+constraints:
+  auto_approval_allowed: false
+  acknowledge_as_signoff_allowed: false

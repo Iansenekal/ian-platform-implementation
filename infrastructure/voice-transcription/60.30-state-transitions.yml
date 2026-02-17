@@ -1,0 +1,27 @@
+states:
+  - Intake
+  - Work-InProgress
+  - PendingReview
+  - Final
+  - Evidence-Pack
+
+transitions:
+  - from: Intake
+    to: Work-InProgress
+    audit_required: true
+  - from: Work-InProgress
+    to: PendingReview
+    condition: review_required=true
+    audit_required: true
+  - from: Work-InProgress
+    to: Final
+    condition: review_required=false
+    audit_required: true
+  - from: PendingReview
+    to: Final
+    condition: reviewer_approved=true
+    audit_required: true
+
+indexing_eligibility:
+  default_folder: Final
+  pending_review_indexing: false

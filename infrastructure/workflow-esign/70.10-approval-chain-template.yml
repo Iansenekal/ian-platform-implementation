@@ -1,0 +1,45 @@
+version: 1
+workflow_template_id: POPIA-DEFAULT
+workflow_template_name: POPIA Approval Chain
+chain_type: fixed_or_scope_derived
+rules:
+  explicit_decision_required: true
+  allow_silent_pass: false
+  no_self_approval: true
+  mfa_required_for_approvers: true
+  deterministic_order_required: true
+  audit_event_required: true
+steps:
+  - step_id: S1_DOCUMENT_OWNER
+    step_name: Document Owner Review
+    approver_group: ROLE-APPROVER-DOC-OWNER
+    scope_selector: {}
+    decision_required: true
+    reject_reason_required: true
+    sla_hours: 24
+    escalation_rule: notify_hod_then_compliance
+    delegation_policy: time_bound_with_audit
+  - step_id: S2_HOD
+    step_name: HOD Approval
+    approver_group: ROLE-APPROVER-HOD
+    scope_selector:
+      by_department: true
+      by_site: true
+    decision_required: true
+    reject_reason_required: true
+    sla_hours: 48
+    escalation_rule: notify_gm
+    delegation_policy: time_bound_with_audit
+  - step_id: S3_GM
+    step_name: GM Approval
+    approver_group: ROLE-APPROVER-GM
+    scope_selector:
+      by_site: true
+    decision_required: true
+    reject_reason_required: true
+    sla_hours: 72
+    escalation_rule: notify_compliance
+    delegation_policy: time_bound_with_audit
+quorum:
+  enabled: false
+  n_of_m: ""

@@ -1,0 +1,11 @@
+version: 1
+group_mapping:
+  admin: AI-N8N-ADMINS
+  operator: AI-N8N-OPERATORS
+  builder: AI-N8N-BUILDERS
+  viewer: AI-N8N-VIEWERS
+project_scoped_pattern: AI-N8N-PROJ-<CODE>-BUILDERS|VIEWERS
+rules:
+  least_privilege_required: true
+  separation_of_duties_required: true
+  admin_membership_minimized: true

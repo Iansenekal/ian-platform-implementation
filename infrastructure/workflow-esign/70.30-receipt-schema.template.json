@@ -1,0 +1,16 @@
+{
+  "receipt_id": "rcpt_2026_000001",
+  "document_id": "POPIA-Policy-001",
+  "document_version": "v1.2",
+  "document_sha256": "<hex>",
+  "workflow_instance_id": "wf_2026_001",
+  "step_id": "S2_HOD",
+  "decision": "APPROVED",
+  "signer_subject": "user:example",
+  "signer_display_name": "Example User",
+  "auth_method": "UI",
+  "mfa_method": "WebAuthn",
+  "timestamp_utc": "2026-02-10T08:00:00Z",
+  "policy_version": "policy_2026-02-01",
+  "server_signature": "<signature>"
+}

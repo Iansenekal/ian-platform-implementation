@@ -1,0 +1,18 @@
+version: 1
+required_metadata:
+  - document_type
+  - department
+  - site
+  - project_code
+  - sensitivity_label
+optional_metadata:
+  - requires_quorum
+validation:
+  fail_closed_on_missing_required: true
+  fail_closed_on_invalid_scope: true
+  allowed_document_types:
+    - POPIA
+    - Safety
+    - HR
+    - Finance
+    - SOP

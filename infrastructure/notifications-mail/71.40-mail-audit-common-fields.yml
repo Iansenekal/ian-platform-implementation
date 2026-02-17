@@ -1,0 +1,20 @@
+version: 1
+mandatory_common_fields:
+  - timestamp
+  - event_type
+  - correlation_id
+  - source_component
+  - environment
+  - severity
+recommended_fields:
+  - document_id
+  - document_version
+  - workflow_step_id
+  - approver_group
+  - recipient_count
+  - recipient_hashes
+  - message_id
+  - template_id
+field_controls:
+  timezone_aware_timestamp_required: true
+  ntp_sync_required: true

@@ -1,0 +1,5 @@
+role,mfa_required,allowed_methods,notes
+windmill_admin,yes,WebAuthn|TOTP|RecoveryCode,privileged_and_allowlisted
+windmill_operator,recommended,WebAuthn|TOTP,job_operations_scope_limited
+windmill_script_builder,recommended,WebAuthn|TOTP,authoring_scope_limited
+windmill_viewer,optional,TOTP,read_only

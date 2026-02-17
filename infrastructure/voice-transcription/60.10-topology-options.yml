@@ -1,0 +1,15 @@
+topology_options:
+  cpu_single_worker:
+    worker_host: AI-DATA01
+    recommended_for: low_volume
+  gpu_dedicated_worker:
+    worker_host: ASR-GPU-VM
+    recommended_for: high_volume
+  hybrid_queue_workers:
+    worker_count_range: "1..N"
+    bounded_concurrency: true
+
+constraints:
+  lan_only: true
+  no_public_endpoints: true
+  least_privilege: true

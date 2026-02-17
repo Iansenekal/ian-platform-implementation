@@ -1,0 +1,25 @@
+version: 1
+voice_node_types:
+  - VoiceAsset
+  - Transcript
+  - MeetingEvent
+voice_edges:
+  - belongs_to_project
+  - derived_from
+  - mentions_entity
+  - related_to_document
+  - same_series
+permissions:
+  hide_transcript_node_if_unauthorized: true
+  hide_revealing_edges_if_unauthorized: true
+  no_hidden_placeholders: true
+restricted_class_controls:
+  avoid_person_identity_nodes_by_default: true
+  sensitive_edge_explanations_disabled: true
+relevance:
+  explainable_weighting_required: true
+  dimensions:
+    - shared_project_context
+    - explicit_reference
+    - entity_overlap
+    - recency

@@ -1,0 +1,19 @@
+/<Tenant>/Evidence-Pack/
+  /<ProjectCode>/
+    /Documents/
+      /<DocumentID>/
+        /<Version>/
+          00-summary.json
+          10-workflow-instance.json
+          20-approvals/
+            step_S1_approved_receipt.json
+          30-signatures/
+            signer_<subject>_receipt.json
+          40-emails/
+            notification_<id>.json
+          50-hashes/
+            document_sha256.txt
+          60-policy-context/
+            workflow_template_version.txt
+            policy_version.txt
+          90-export/

@@ -1,0 +1,17 @@
+version: 1
+relay_security:
+  source_ip_allowlist_required: true
+  open_relay_forbidden: true
+  smtp_auth_required_if_no_ip_allowlist: true
+  tls_to_upstream_recommended: true
+  sender_domain_restrictions_required: true
+  rate_limit_required: true
+  minimal_metadata_logging_required: true
+ports:
+  inbound:
+    - 25
+    - 587
+  outbound:
+    - 25
+    - 587
+    - 465

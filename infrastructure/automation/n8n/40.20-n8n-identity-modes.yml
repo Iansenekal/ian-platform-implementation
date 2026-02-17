@@ -1,0 +1,11 @@
+version: 1
+preferred_mode: oidc_sso
+supported_modes:
+  - oidc_sso
+  - idp_local_users
+fallback_mode:
+  - break_glass_local_n8n_only
+constraints:
+  local_n8n_users_default_enabled: false
+  n8n_not_primary_user_store: true
+  lan_only_access_required: true

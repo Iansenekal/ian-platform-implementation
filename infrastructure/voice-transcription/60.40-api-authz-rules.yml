@@ -1,0 +1,15 @@
+authorization:
+  require_authentication: true
+  require_role_and_project_scope: true
+  deny_by_default: true
+
+rules:
+  forbid_index_from_pending_review: true
+  export_requires_approval_event: true
+  unauthorized_attempts_audited: true
+  log_without_content_leakage: true
+
+search_graph_visibility:
+  acl_inheritance_required: true
+  hide_hidden_nodes_edges: true
+  no_related_content_leakage: true

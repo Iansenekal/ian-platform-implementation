@@ -1,0 +1,18 @@
+version: 1
+default_tier: S2
+tiers:
+  S1:
+    description: authenticated approval record only
+    signed_receipt_required: false
+    embedded_pdf_signature: false
+  S2:
+    description: signed receipt over document hash
+    signed_receipt_required: true
+    embedded_pdf_signature: optional
+  S3:
+    description: signed receipt plus embedded PDF signature block
+    signed_receipt_required: true
+    embedded_pdf_signature: required
+constraints:
+  mfa_required_for_approval: true
+  no_content_in_audit_logs: true

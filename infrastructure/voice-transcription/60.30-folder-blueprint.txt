@@ -1,0 +1,9 @@
+/Nextcloud/<Tenant>/Projects/<ProjectCode>/Voice/
+  00-README-Voice-Policy/
+  10-Intake/
+  20-Work-InProgress/
+  30-PendingReview/
+  40-Final/
+  50-Evidence-Pack/
+  60-Exports-Restricted/
+  90-System-Internal/

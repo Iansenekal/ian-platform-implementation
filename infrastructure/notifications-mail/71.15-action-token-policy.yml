@@ -1,0 +1,10 @@
+version: 1
+default_ttl_minutes: 15
+single_use_required: true
+state_check_required: true
+bind_to_workflow_step: true
+bind_to_approver_scope: true
+strict_recipient_binding_default: false
+log_token_value: false
+allow_decision_without_auth: false
+allow_decision_without_mfa: false

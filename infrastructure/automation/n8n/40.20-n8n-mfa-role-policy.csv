@@ -1,0 +1,5 @@
+role,mfa_required,allowed_methods,notes
+n8n_admin,yes,WebAuthn|TOTP|RecoveryCodes,mandatory_privileged_access
+n8n_operator,recommended,WebAuthn|TOTP,operations_without_global_admin
+n8n_builder,recommended,WebAuthn|TOTP,scoped_workflow_changes
+n8n_viewer,optional,TOTP,read_only_visibility

@@ -1,0 +1,6 @@
+source_label,protocol,port,allowed,reason
+admin_workstation_static_ips,tcp,443,yes,admin_access
+operator_builder_workstations,tcp,443,yes,job_development_and_operations
+jump_host_optional,tcp,443,yes,controlled_access_path
+AI-FRONTEND01_optional,tcp,443,yes,integrated_navigation_if_required
+all_other_lan_hosts,tcp,443,no,reduce_attack_surface

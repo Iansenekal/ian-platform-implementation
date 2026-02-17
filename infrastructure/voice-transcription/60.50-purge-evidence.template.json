@@ -1,0 +1,22 @@
+{
+  "recording_id": "RID9F3A",
+  "record_set_refs": {
+    "audio_path": "/Nextcloud/<Tenant>/Projects/<ProjectCode>/Voice/40-Final/...",
+    "transcript_path": "/Nextcloud/<Tenant>/Projects/<ProjectCode>/Voice/40-Final/...",
+    "meta_path": "/Nextcloud/<Tenant>/Projects/<ProjectCode>/Voice/40-Final/..."
+  },
+  "retention_class": "VOICE-90D",
+  "policy_version": "v1.0",
+  "purge_timestamp": "2026-02-10T12:00:00+02:00",
+  "purge_actor": "svc-voice-retention",
+  "pre_purge_fingerprints": {
+    "audio_sha256": "<hash>",
+    "transcript_sha256": "<hash>"
+  },
+  "deletion_status": {
+    "nextcloud": "completed",
+    "opensearch": "completed",
+    "knowledge_graph": "completed"
+  },
+  "incident_ticket": ""
+}

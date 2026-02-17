@@ -1,0 +1,14 @@
+index_field,source,purpose,notes
+recording_id,META.json,Stable dedupe and purge key,Required and unique
+project_code,META.json,Scope and graph filtering,Required
+created_at,META.json,Sort and time filtering,ISO timestamp
+sensitivity_label,META.json,Policy and snippet gating,Required
+retention_class,META.json,Retention enforcement,Required
+expires_at,computed,Deterministic purge trigger,Computed from retention policy
+source_type,META.json,UI filter and analytics,meeting/voice_note/training
+language,META.json,Analyzer selection,Optional
+transcript_text,TRANSCRIPT,Searchable content,Never written to audit logs
+segments,SEGMENTS.json,Time navigation,Optional
+acl_subjects,computed from Nextcloud ACL,Query-time authorization,Critical
+graph_refs,computed/enriched,Graph linkage hints,Safe subset only
+evidence_refs,Evidence-Pack,Audit drilldown links,Links only

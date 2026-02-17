@@ -1,0 +1,19 @@
+version: 1
+required_fields:
+  - correlation_id
+  - document_id
+  - document_version
+  - workflow_step
+  - due_at
+  - approve_link
+  - reject_link
+  - view_details_link
+  - security_footer
+content_controls:
+  attachments_enabled_default: false
+  include_document_content: false
+  include_secrets: false
+  include_unnecessary_pii: false
+link_controls:
+  https_only: true
+  internal_frontend_url_only: true

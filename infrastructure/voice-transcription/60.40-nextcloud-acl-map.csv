@@ -1,0 +1,8 @@
+folder,voice_contributor,voice_reviewer,voice_reader,voice_operator,voice_auditor,voice_export_approver,service_accounts
+10-Intake,write,read,no,read_write,no,no,limited
+20-Work-InProgress,no,no,no,read_write,no,no,read_write
+30-PendingReview,no,read_write,no,read_write,no,no,limited
+40-Final,read,read_write,read,read_write,no,no,read_only_if_needed
+50-Evidence-Pack,no,optional_read,no,optional_read,read,no,limited
+60-Exports-Restricted,no,optional_read,no,optional_read,no,read_write,limited
+90-System-Internal,no,no,no,no,no,no,service_only

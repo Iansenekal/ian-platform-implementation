@@ -1,0 +1,5 @@
+source,port,proto,allowed,reason
+admin_workstation_static_ips,443,tcp,yes,operations_ui_access
+jump_host_optional,443,tcp,yes,controlled_admin_access
+AI-FRONTEND01_optional,443,tcp,conditional,integrated_ux_or_sso_support
+all_other_lan_hosts,443,tcp,no,reduce_attack_surface

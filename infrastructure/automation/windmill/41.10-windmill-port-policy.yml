@@ -1,0 +1,12 @@
+lan_only_required: true
+public_exposure_allowed: false
+ingress:
+  - service: windmill_ui_api
+    port: 443
+    bind_scope: lan_interface_allowlisted
+  - service: windmill_app_direct
+    port: 8000
+    bind_scope: localhost_only
+internal_dependencies:
+  - postgres_port: 5432
+  - worker_comms: docker_network_only

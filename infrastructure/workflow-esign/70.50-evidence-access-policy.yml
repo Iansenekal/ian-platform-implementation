@@ -1,0 +1,24 @@
+version: 1
+evidence_pack:
+  default_external_sharing: disabled
+  read_only_after_completion: true
+  legal_hold_blocks_purge: true
+roles:
+  auditor:
+    read: true
+    export: true
+    write: false
+    delete: false
+  compliance:
+    read: true
+    export: true
+    write: controlled
+    delete: controlled
+  evidence_admin:
+    read: true
+    export: true
+    write: true
+    delete: policy_controlled
+    mfa_required: true
+  project_member:
+    read: false

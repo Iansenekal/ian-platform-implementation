@@ -1,0 +1,14 @@
+version: 1
+retention_defaults:
+  central_notification_audit_days: 365
+  central_notification_audit_min_days: 180
+  central_notification_audit_max_days: 730
+  smtp_relay_logs_days: 30
+  smtp_relay_logs_min_days: 14
+  smtp_relay_logs_max_days: 90
+  action_token_metadata_days: 365
+  delivery_failure_incidents_days: 365
+  evidence_pack_receipts: per_document_retention
+forbidden_retention:
+  retain_email_bodies_as_evidence: false
+  retain_tokenized_action_links: false

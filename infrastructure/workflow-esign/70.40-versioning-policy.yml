@@ -1,0 +1,15 @@
+version: 1
+versioning:
+  convention: semantic_or_date_based
+  require_version_metadata_on_submission: true
+  require_change_summary: true
+new_version_required_when:
+  - content_bytes_changed
+  - material_metadata_changed
+  - approval_chain_policy_changed
+  - rejected_rework
+new_version_not_required_when:
+  - non_material_filename_correction_with_identical_bytes
+  - workflow_state_folder_move_only
+safe_default:
+  if_uncertain_create_new_version: true

@@ -72,6 +72,35 @@ Last Updated: 2026-02-17
 - [x] B44 Add 30.10 search + knowledge-graph sources/connectors baseline + verification automation
 - [x] B45 Add 30.15 search + knowledge-graph ACL inheritance baseline + verification automation
 - [x] B46 Add 30.70 search + knowledge-graph retention/privacy baseline + verification automation
+- [x] B53 Add 30.90 search + knowledge-graph voice transcript indexing/graph-linking baseline + verification automation
+- [x] B47 Add 60.00 voice/transcription overview baseline + verification automation
+- [x] B48 Add 60.10 voice/transcription architecture/data-flow baseline + verification automation
+- [x] B49 Add 60.30 voice/transcription storage-model baseline + verification automation
+- [x] B50 Add 60.40 voice/transcription RBAC baseline + verification automation
+- [x] B51 Add 60.50 voice/transcription retention-policy baseline + verification automation
+- [x] B52 Add 60.60 voice/transcription audit-events baseline + verification automation
+- [x] B54 Add 60.70 voice/transcription search-indexing integration baseline + verification automation
+- [x] B55 Add 70.10 workflow/eSign approval-chain baseline + verification automation
+- [x] B56 Add 70.11 workflow/eSign approve-reject and escalation baseline + verification automation
+- [x] B57 Add 70.30 workflow/eSign signature-standard and verification baseline + automation
+- [x] B58 Add 70.40 workflow/eSign document versioning-and-hashing baseline + verification automation
+- [x] B59 Add 70.50 workflow/eSign audit-trail and evidence-pack baseline + verification automation
+- [x] B60 Add 71.10 notifications/mail LAN-only architecture baseline + verification automation
+- [x] B61 Add 71.15 actionable email Approve/Reject links security baseline + verification automation
+- [x] B62 Add 71.40 notifications/mail audit-logging and retention baseline + verification automation
+- [x] B63 Add 71.50 notifications/mail evidence-retention standard + purge/legal-hold verification automation
+- [x] B64 Add 40.00 n8n optional automation overview baseline + verification automation
+- [x] B65 Add 40.10 n8n ports/trust-boundaries baseline + verification automation
+- [x] B66 Add 40.20 n8n SSO/MFA policy baseline + verification automation
+- [x] B67 Add 40.30 n8n secrets-and-credentials policy baseline + verification automation
+- [x] B68 Add 40.50 n8n backup-and-restore baseline + verification automation
+- [x] B69 Add 40.60 n8n mandatory verification-checklist baseline + verification automation
+- [x] B70 Add 41.00 Windmill optional automation overview baseline + verification automation
+- [x] B71 Add 41.10 Windmill ports-and-trust-boundaries baseline + verification automation
+- [x] B72 Add 41.20 Windmill SSO-and-MFA policy baseline + verification automation
+- [x] B73 Add 41.30 Windmill secrets-policy baseline + verification automation
+- [x] B74 Add 41.50 Windmill backup-and-restore baseline + verification automation
+- [x] B75 Add 41.60 Windmill mandatory verification-checklist baseline + verification automation
 - [x] B4 Add runtime audit-event emission controls in `services/reference-app/app.py`
 - [x] B5 Expand CI/Makefile quality gates for Sprint A and B checks
 - [x] B6 Wire full OIDC SSO (gateway <-> keycloak) with token validation middleware
@@ -94,11 +123,11 @@ Last Updated: 2026-02-17
 ## Wave 4: 60-79 Voice/Workflow/Email
 
 ### todo
-- [ ] D1 Voice ingestion service + transcript pipeline
-- [ ] D2 Voice retention and audit events
-- [ ] D3 Workflow engine + eSign verification model
-- [ ] D4 Notification service + audit retention
-- [ ] D5 Optional automation platform enablement (n8n/Windmill)
+- [ ] D1 Voice ingestion service + transcript pipeline (60.00 + 60.10 + 60.30 + 60.40 + 60.70 baselines/verifiers added; runtime service/orchestration and search-integration evidence pending)
+- [ ] D2 Voice retention and audit events (60.50 + 60.60 baselines/verifiers added; runtime purge-event emission, tamper-evident pipeline evidence, and operational audit evidence pending)
+- [ ] D3 Workflow engine + eSign verification model (70.10 + 70.11 + 70.30 + 70.40 + 70.50 baselines/verifiers added; runtime workflow implementation, eSign integration, signature/version verification, and end-to-end evidence pending)
+- [ ] D4 Notification service + audit retention (71.10 + 71.15 + 71.40 + 71.50 baselines/verifiers added; runtime SMTP relay integration, secure actionable-email decision flow, centralized audit pipeline, purge/legal-hold execution, and mail retention evidence pending)
+- [ ] D5 Optional automation platform enablement (40.00 + 40.10 + 40.20 + 40.30 + 40.50 + 40.60 n8n baselines/verifiers and 41.00 + 41.10 + 41.20 + 41.30 + 41.50 + 41.60 Windmill baselines/verifiers added; runtime n8n/Windmill deployment, allowlist enforcement, SSO/MFA integration, verification gate execution evidence, backup/restore drills, and secrets/credentials governance evidence pending)
 
 ## Wave 5: 80-99 Monitoring/DR/Day-2/Final Gate
 
@@ -149,20 +178,21 @@ Last Updated: 2026-02-17
 - [ ] 43 Search + graph baseline (30.00 + 30.10 baselines/verifiers added; runtime connector ingestion and permission-aware mind-map evidence pending)
 - [ ] 44 ACL inheritance in search/graph (30.15 baseline + verifier added; runtime ACL sampling/deny-test and drift-remediation evidence pending)
 - [ ] 45 Retention/privacy controls in search/graph (30.70 baseline + verifier added; runtime purge execution, deletion-SLA evidence, and privacy regression evidence pending)
+- [ ] 46 Voice transcript indexing + graph linking (30.90 baseline + verifier added; runtime transcript ingestion, ACL-filtered graph visibility, and relevance-validation evidence pending)
 
 ### 60-79 Voice + Workflow + Email
-- [ ] 60 Voice ingestion baseline
-- [ ] 61 Voice storage model + RBAC
-- [ ] 62 Voice retention + audit events
-- [ ] 63 Voice indexing + graph linking
-- [ ] 70 Workflow approval chain
-- [ ] 71 Signature standards + hashing
-- [ ] 72 eSign audit trail + evidence pack
-- [ ] 73 Notifications + LAN-only mail
-- [ ] 74 Actionable secure email links
-- [ ] 75 Mail audit logging + retention
-- [ ] 76 Optional automation n8n
-- [ ] 77 Optional automation Windmill
+- [ ] 60 Voice ingestion baseline (60.00 + 60.10 baselines/verifiers added; runtime ingest/transcribe flow evidence pending)
+- [ ] 61 Voice storage model + RBAC (60.30 + 60.40 baselines/verifiers added; runtime ACL/approval/index/export-control evidence pending)
+- [ ] 62 Voice retention + audit events (60.50 + 60.60 baselines/verifiers added; runtime purge/hold execution evidence and audit-event emissions pending)
+- [ ] 63 Voice indexing + graph linking (60.70 + 30.90 baselines/verifiers added; runtime indexing-gate, ACL-filtered graph visibility, and purge/reindex evidence pending)
+- [ ] 70 Workflow approval chain (70.10 + 70.11 baselines/verifiers added; runtime chain execution, no-self-approval/MFA enforcement, approve-reject/escalation evidence, and step-audit evidence pending)
+- [ ] 71 Signature standards + hashing (70.30 + 70.40 baselines/verifiers added; runtime receipt signing, version-bound approvals, and key-rotation evidence pending)
+- [ ] 72 eSign audit trail + evidence pack (70.50 baseline + verifier added; runtime immutable Evidence-Pack enforcement, export-control, and retention/legal-hold evidence pending)
+- [ ] 73 Notifications + LAN-only mail (71.10 baseline + verifier added; runtime relay integration and delivery/security evidence pending)
+- [ ] 74 Actionable secure email links (71.15 baseline + verifier added; runtime single-use token service, SSO+MFA action flow, and anti-forward/replay evidence pending)
+- [ ] 75 Mail audit logging + retention (71.40 + 71.50 baselines/verifiers added; runtime mail-event emission, central-log integrity controls, legal-hold enforcement, and retention/purge evidence pending)
+- [ ] 76 Optional automation n8n (40.00 + 40.10 + 40.20 + 40.30 + 40.50 + 40.60 baselines/verifiers added; runtime deployment, port/boundary enforcement, SSO/MFA enforcement, verification-gate evidence, backup/restore evidence, and secrets/rotation evidence pending)
+- [ ] 77 Optional automation Windmill (41.00 + 41.10 + 41.20 + 41.30 + 41.50 + 41.60 baselines/verifiers added; runtime deployment, role enforcement, port/boundary allowlist evidence, SSO/MFA enforcement evidence, secrets governance execution evidence, backup/restore drill evidence, production verification-gate execution evidence, and operational evidence pending)
 
 ### 80-99 Monitoring + DR + Day-2 + Final Gate
 - [ ] 80 Monitoring stack deploy + scrape plan

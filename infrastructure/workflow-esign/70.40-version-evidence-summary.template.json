@@ -1,0 +1,18 @@
+{
+  "document_id": "POPIA-Policy-001",
+  "document_version": "v1.1",
+  "author": "user:owner",
+  "change_summary": "Updated section 4 controls",
+  "authoritative_format": "PDF",
+  "document_sha256": "<hex>",
+  "workflow_instance_id": "wf_2026_0101",
+  "approvals": [
+    {
+      "step_id": "S1_DOCUMENT_OWNER",
+      "decision": "APPROVED",
+      "timestamp_utc": "2026-02-10T08:00:00Z",
+      "receipt_id": "rcpt_2026_1001"
+    }
+  ],
+  "sealed": true
+}

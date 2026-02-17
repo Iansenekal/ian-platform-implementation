@@ -1,0 +1,16 @@
+version: 1
+placement_default: AI-DATA01
+lan_only_required: true
+public_exposure_allowed: false
+inbound:
+  ui_api:
+    port: 443
+    bind_scope: lan_only
+    allowed_sources:
+      - admin_operator_allowlist
+      - ai_frontend01_optional
+  container_direct:
+    port: 5678
+    bind_scope: localhost_only
+    allowed_sources:
+      - reverse_proxy_only

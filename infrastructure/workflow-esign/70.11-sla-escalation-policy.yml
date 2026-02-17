@@ -1,0 +1,31 @@
+version: 1
+sla:
+  field: SLA_HOURS
+  timer_start: step_activation_time
+reminders:
+  - at_percent: 50
+    recipients: step_approver_group
+  - at_percent: 80
+    recipients:
+      - step_approver_group
+      - workflow_admin_watch
+escalations:
+  - level: 1
+    at_percent: 100
+    actions:
+      - notify_step_approvers
+      - notify_manager_group
+      - notify_compliance_watch
+  - level: 2
+    at_hours_after_breach: 24
+    actions:
+      - reroute_to_alternate_group_if_configured
+      - notify_original_group
+  - level: 3
+    at_hours_after_breach: 48
+    actions:
+      - notify_gm_group
+      - create_incident_ticket
+guards:
+  never_auto_approve: true
+  escalation_requires_audit_event: true

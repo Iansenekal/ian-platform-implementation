@@ -1,0 +1,11 @@
+source_type,sensitivity,default_retention_class,review_required,indexing_mode
+training_session,public_internal,VOICE-1Y,optional,immediate
+training_session,restricted,VOICE-1Y_or_3Y,recommended,after_review
+safety_briefing,public_internal,VOICE-1Y,optional,immediate
+safety_briefing,restricted_incident_linked,VOICE-3Y,mandatory,after_review
+operations_meeting,public_internal,VOICE-90D,optional,immediate
+operations_meeting,confidential_restricted,VOICE-90D_or_1Y,recommended,after_review
+incident_debrief,confidential,VOICE-1Y,mandatory,after_review
+incident_debrief,restricted,VOICE-LEGAL-HOLD_or_7Y,mandatory,after_review
+voice_note,public_internal,VOICE-30D,optional,immediate
+compliance_evidence_pack_recording,any,VOICE-7Y_or_LEGAL-HOLD,mandatory,after_approval

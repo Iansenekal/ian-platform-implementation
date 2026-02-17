@@ -1,0 +1,18 @@
+version: 1
+default_model: A
+models:
+  A:
+    name: dedicated_postfix_relay
+    relay_required: true
+    recommended: true
+  B:
+    name: existing_exchange_relay
+    relay_required: true
+    recommended: conditional
+  C:
+    name: ui_only_no_email
+    relay_required: false
+    recommended: high_isolation
+controls:
+  no_public_smtp_exposure: true
+  approvals_require_sso_mfa: true

@@ -1,0 +1,14 @@
+version: 1
+rotation_defaults:
+  n8n_encryption_key: annual
+  nextcloud_app_password_or_token: 90_days
+  gateway_api_key_or_client_secret: 90_days
+  db_password: 180_days
+  webhook_signing_key: 180_days
+trigger_rotation:
+  - compromise_suspected
+  - staff_or_role_change
+  - scope_change
+requirements:
+  rotation_evidence_required: true
+  least_privilege_revalidation_required: true

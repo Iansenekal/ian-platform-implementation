@@ -1,0 +1,11 @@
+capability,voice_admin,voice_operator,voice_contributor,voice_reviewer,voice_reader,voice_auditor,voice_export_approver,notes
+upload_intake,no,assist,yes,optional,no,no,no,classification metadata required
+create_transcription_job,yes,yes,optional,yes,no,no,no,restricted can require operator/reviewer
+run_claim_jobs,yes,yes,no,no,no,no,no,service account executes workers
+view_pending_review,yes,yes,no,yes,no,no,no,restricted access only
+approve_reject_transcript,policy,optional,no,yes,no,no,no,reject requires reason
+view_final_transcript,yes,yes,read,read_write,read,no,no,project scope enforced
+search_transcripts,yes,yes,yes,yes,yes,no,no,acl inheritance enforced
+view_evidence_pack,yes,yes,no,optional,no,yes,optional,restricted membership
+export_transcript,yes,optional,no,optional,no,no,approve,approval evidence required
+change_policy_retention_rules,yes,no,no,no,no,no,no,admin only

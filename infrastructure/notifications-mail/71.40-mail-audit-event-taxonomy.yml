@@ -1,0 +1,20 @@
+version: 1
+mandatory_events:
+  - NOTIF_CREATED
+  - NOTIF_ROUTED
+  - EMAIL_SEND_ATTEMPT
+  - EMAIL_SENT
+  - EMAIL_DELIVERY_STATUS
+  - ACTION_TOKEN_ISSUED
+  - ACTION_LINK_CLICKED
+  - ACTION_AUTH_SUCCESS
+  - ACTION_AUTH_FAIL
+  - APPROVAL_DECISION_APPROVED
+  - APPROVAL_DECISION_REJECTED
+  - TOKEN_EXPIRED
+  - TOKEN_REPLAY_BLOCKED
+  - NOTIF_FAILED
+constraints:
+  log_token_value: false
+  log_message_body: false
+  log_attachments: false

@@ -1,0 +1,24 @@
+id,priority,domain,check,expected_result
+NET-01,P0,network,allowlisted access only,allowlisted works non_allowlisted denied
+NET-02,P0,network,no direct 5678 LAN exposure,only reverse proxy path works
+NET-03,P1,network,outbound deny by default,non approved destination blocked and logged
+ID-01,P0,identity,sso login and role mapping,successful login with correct roles
+ID-02,P0,identity,admin mfa enforcement,mfa required
+ID-03,P0,identity,rbac deny test,admin actions denied for standard users and audited
+ID-04,P1,identity,session timeout,session expires and requires reauth
+SEC-01,P0,secrets,no secrets in repo/config,scan clean
+SEC-02,P0,secrets,secret file permissions,600 root root
+SEC-03,P1,secrets,credential inventory parity,no unknown credentials
+SEC-04,P1,secrets,least privilege tests,blocked operations fail
+WF-01,P1,governance,workflow catalog quality,owner purpose class present
+WF-02,P1,governance,export hygiene,no secrets in exports
+WF-03,P2,governance,separation of duties,no single actor controls high risk flow
+OBS-01,P1,observability,health target monitored,up and alerts configured
+OBS-02,P1,observability,admin action auditing,actor timestamp recorded
+OBS-03,P2,observability,alert routing test,alert delivered
+BDR-01,P1,backup,backup success evidence,recent backup exists
+BDR-02,P1,backup,restore drill evidence,lab restore successful
+BDR-03,P2,backup,encryption key recovery evidence,key retrievable under dual control
+OPS-01,P1,operations,reboot resilience,n8n healthy after reboot
+OPS-02,P1,operations,admin membership review,minimal justified admins
+OPS-03,P2,operations,operator runbook completeness,operators can support without admins

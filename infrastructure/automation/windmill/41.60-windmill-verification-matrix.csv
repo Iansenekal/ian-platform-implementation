@@ -1,0 +1,24 @@
+id,priority,domain,check,expected_result
+NET-01,P0,network,allowlisted access only,allowlisted works non_allowlisted denied
+NET-02,P0,network,no direct app port LAN exposure,only reverse proxy path works
+NET-03,P1,network,outbound deny by default,non approved destination blocked and logged
+ID-01,P0,identity,sso login and role mapping,successful login with correct roles
+ID-02,P0,identity,admin mfa enforcement,mfa required
+ID-03,P0,identity,rbac deny test,viewer denied privileged actions and audited
+ID-04,P1,identity,session timeout,session expires and requires reauth
+SEC-01,P0,secrets,no secrets in scripts git docs outputs,scan clean
+SEC-02,P0,secrets,secret file permissions,600 root root
+SEC-03,P1,secrets,secret inventory parity,no unknown secrets
+SEC-04,P1,secrets,least privilege tests,blocked operations fail
+JOB-01,P1,governance,job catalog quality,owner purpose class present
+JOB-02,P1,governance,peer review on privileged scripts,review evidence present
+JOB-03,P2,governance,separation of duties,no single actor controls high risk script lifecycle
+OBS-01,P1,observability,health target monitored,up and alerts configured
+OBS-02,P1,observability,script run/change auditing,actor timestamp recorded
+OBS-03,P2,observability,alert routing test,alert delivered
+BDR-01,P1,backup,backup success evidence,recent backup exists
+BDR-02,P1,backup,restore drill evidence,lab restore successful
+BDR-03,P2,backup,secrets recovery evidence,secrets material recoverable under dual control
+OPS-01,P1,operations,reboot resilience,windmill healthy after reboot
+OPS-02,P1,operations,admin membership review,minimal justified admins
+OPS-03,P2,operations,operator runbook completeness,operators can support without admins

@@ -1,0 +1,22 @@
+version: 1
+default_indexable_folder: 40-Final
+never_indexable_folders:
+  - 30-PendingReview
+indexing_mode_rules:
+  immediate:
+    requires_review_approval: false
+  after_review:
+    requires_review_approval: true
+  never:
+    indexable: false
+sensitivity_gates:
+  Restricted:
+    required_indexing_mode: after_review
+    required_event: VOICE_REVIEW_APPROVED
+  Confidential:
+    required_indexing_mode: immediate_or_after_review
+  Internal:
+    required_indexing_mode: immediate_or_after_review
+fail_closed:
+  block_on_acl_compute_error: true
+  block_on_missing_acl_subjects: true

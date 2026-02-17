@@ -1,0 +1,16 @@
+version: 1
+email_actions:
+  approve_link_required: true
+  reject_link_required: true
+  signed_token_required: true
+  token_ttl_minutes: 30
+  identity_bound_token: true
+  mfa_required_on_action: true
+  reject_reason_capture_required: true
+failure_events:
+  - EMAIL_DELIVERY_FAILED
+  - APPROVAL_TOKEN_INVALID
+  - APPROVAL_MFA_UNAVAILABLE
+defaults:
+  fallback_to_ui_on_email_failure: true
+  deny_on_token_validation_failure: true

@@ -1,0 +1,9 @@
+required_backup_items:
+  - windmill_database
+  - windmill_script_flow_exports_versioned
+  - windmill_configuration_templates
+  - reverse_proxy_configuration
+  - governance_records_job_catalog_approvals_access_reviews
+encryption_dependencies_required_for_restore: true
+rbac_revalidation_required_post_restore: true
+safe_logging_revalidation_required_post_restore: true

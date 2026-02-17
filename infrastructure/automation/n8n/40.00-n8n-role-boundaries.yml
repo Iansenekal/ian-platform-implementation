@@ -1,0 +1,16 @@
+version: 1
+module_enabled_default: false
+runtime_mode: lan_only
+recommended_host: AI-DATA01
+public_exposure_allowed: false
+allowed_integrations:
+  - gateway_api
+  - nextcloud_scoped
+  - postgres_workflow_schema
+  - opensearch_read_only
+  - windmill_optional
+forbidden_defaults:
+  - docker_socket_access
+  - ssh_infrastructure_admin
+  - unscoped_repository_access
+  - outbound_internet_runtime_calls

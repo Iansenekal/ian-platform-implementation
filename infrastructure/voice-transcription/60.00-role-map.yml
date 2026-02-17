@@ -1,0 +1,12 @@
+roles:
+  - Voice-Admin
+  - Voice-Operator
+  - Voice-Contributor
+  - Voice-Reviewer
+  - Voice-Reader
+  - Voice-Auditor
+
+controls:
+  mfa_required_for_admin: true
+  least_privilege_enforced: true
+  export_requires_audit: true

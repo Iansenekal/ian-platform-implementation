@@ -1,0 +1,7 @@
+role_groups:
+  admin: AI-WM-ADMINS
+  operator: AI-WM-OPERATORS
+  builder: AI-WM-BUILDERS
+  viewer: AI-WM-VIEWERS
+optional_project_groups_pattern: AI-WM-PROJ-<CODE>-<ROLE>
+separation_of_duties_required: true

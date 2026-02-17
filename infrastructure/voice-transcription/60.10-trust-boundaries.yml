@@ -1,0 +1,24 @@
+trust_boundaries:
+  - id: A
+    from: user_endpoints
+    to: ai-frontend01
+  - id: B
+    from: ai-frontend01
+    to: ai-data01_gateway
+  - id: C
+    from: gateway
+    to: asr_worker_internal
+  - id: D
+    from: asr_worker
+    to: nextcloud_opensearch
+  - id: E
+    from: search_graph
+    to: frontend_ui
+
+classification:
+  required_fields:
+    - sensitivity_label
+    - retention_class
+    - indexing_rule
+  optional_fields:
+    - purpose_tag

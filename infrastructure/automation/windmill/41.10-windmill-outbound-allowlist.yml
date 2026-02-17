@@ -1,0 +1,9 @@
+default_policy: deny
+allowed_internal_destinations:
+  - backend_gateway:443
+  - nextcloud:443
+  - opensearch:9200
+  - identity_provider:443
+  - email_relay:25
+  - email_relay_submission:587
+external_outbound_requires_explicit_approval: true

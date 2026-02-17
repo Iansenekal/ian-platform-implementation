@@ -1,0 +1,20 @@
+role_groups:
+  Voice-Admin: VOICE-ROLE-Voice-Admin
+  Voice-Operator: VOICE-ROLE-Voice-Operator
+  Voice-Contributor: VOICE-ROLE-Voice-Contributor
+  Voice-Reviewer: VOICE-ROLE-Voice-Reviewer
+  Voice-Reader: VOICE-ROLE-Voice-Reader
+  Voice-Auditor: VOICE-ROLE-Voice-Auditor
+  Voice-Export-Approver: VOICE-ROLE-Voice-Export-Approver
+
+project_scope_pattern: PROJ-<ProjectCode>-VOICE-<Tier>
+
+mfa_required_roles:
+  - Voice-Admin
+  - Voice-Auditor
+  - Voice-Export-Approver
+
+restricted_workflow_roles:
+  create_job_allowed:
+    - Voice-Operator
+    - Voice-Reviewer

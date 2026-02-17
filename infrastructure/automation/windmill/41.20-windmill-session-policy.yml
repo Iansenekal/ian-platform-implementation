@@ -1,0 +1,7 @@
+admin_session_max_minutes: 480
+operator_builder_session_max_minutes: 720
+idle_timeout_required: true
+idle_timeout_minutes: 30
+reauth_for_sensitive_actions: true
+idp_lockout_policy_required: true
+lan_allowlist_required: true

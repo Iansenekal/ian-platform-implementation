@@ -1,0 +1,7 @@
+preferred_mode: idp_sso
+supported_modes:
+  - idp_sso
+  - idp_local_users
+  - break_glass_local_windmill_only
+local_windmill_users_default_enabled: false
+mfa_enforced_at_idp: true

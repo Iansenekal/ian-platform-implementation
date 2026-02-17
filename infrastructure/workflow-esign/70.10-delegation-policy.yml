@@ -1,0 +1,14 @@
+version: 1
+delegation:
+  enabled: true
+  approval_required: true
+  time_bound_required: true
+  mfa_required: true
+  no_self_approval_override: false
+  audit_events:
+    - WORKFLOW_DELEGATION_CREATED
+    - WORKFLOW_DELEGATION_UPDATED
+    - WORKFLOW_DELEGATION_REVOKED
+constraints:
+  max_delegation_days: 30
+  require_reason: true

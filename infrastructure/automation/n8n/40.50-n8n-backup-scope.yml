@@ -1,0 +1,11 @@
+version: 1
+required_backup_items:
+  - n8n_database
+  - workflow_exports_sanitized
+  - n8n_configuration_templates
+  - reverse_proxy_configuration
+  - operational_inventory_metadata
+  - encryption_key_recovery_reference
+constraints:
+  encryption_key_required_for_restore: true
+  workflow_exports_must_be_sanitized: true

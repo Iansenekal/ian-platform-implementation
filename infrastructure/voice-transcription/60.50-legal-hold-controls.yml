@@ -1,0 +1,16 @@
+legal_hold:
+  enabled: true
+  authorized_roles:
+    - Compliance-Lead
+    - Legal-Lead
+    - GM-Delegate
+  require_reason: true
+  require_scope: true
+  require_start_date: true
+  require_audit_reference: true
+  blocks_purge_until_release: true
+
+exceptions:
+  longer_than_default_requires_approval: true
+  shorter_than_regulated_requires_compliance_approval: true
+  exception_record_required: true

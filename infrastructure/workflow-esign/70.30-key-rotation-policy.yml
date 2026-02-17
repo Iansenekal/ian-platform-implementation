@@ -1,0 +1,15 @@
+version: 1
+signing_key:
+  storage_path: /opt/<stack>/secrets/
+  minimum_permissions: "0600"
+  owner: root
+rotation:
+  interval_days: 90
+  retain_old_public_keys: true
+  old_key_verify_support_required: true
+verification_key_distribution:
+  audience: auditors_and_compliance
+  trust_path: /opt/<stack>/trust/
+incident_response:
+  key_compromise_requires_immediate_rotation: true
+  historical_receipt_reverification_required: true

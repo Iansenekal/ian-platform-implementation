@@ -1,0 +1,14 @@
+runtime_mode: lan_only
+public_exposure_allowed: false
+privileged_runtime_component: true
+allowed_inbound_sources:
+  - admin_allowlist
+  - operator_allowlist
+primary_execution_path:
+  - windmill_jobs
+  - backend_gateway_api
+prohibited_defaults:
+  - docker_socket_access
+  - direct_host_privileged_api
+  - outbound_internet_runtime_calls
+  - embedded_secrets_in_scripts

@@ -1,0 +1,6 @@
+component,target,purpose,restrictions
+n8n-ai-data01,backend-gateway,workflow-orchestration,internal-tls-and-allowlist
+n8n-ai-data01,nextcloud,document-routing,scoped-folders-only
+n8n-ai-data01,postgres,workflow-state,dedicated-schema-least-privilege
+n8n-ai-data01,opensearch,reporting-and-alerts,read-only-default
+n8n-optional,windmill,trigger-jobs,rbac-gated-and-audited

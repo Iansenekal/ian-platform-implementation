@@ -1,0 +1,29 @@
+version: 1
+mandatory_fields:
+  - event_id
+  - event_type
+  - timestamp_utc
+  - actor_type
+  - actor_id
+  - actor_roles
+  - source_ip
+  - tenant_id
+  - project_code
+  - recording_id
+  - job_id
+  - object_path
+  - sensitivity_label
+  - retention_class
+  - result
+  - correlation_id
+recommended_fields:
+  - user_agent
+  - auth_context
+  - policy_version
+  - object_hash
+  - error_code
+  - error_detail
+constraints:
+  content_logging_forbidden: true
+  transcript_text_forbidden: true
+  audio_payload_forbidden: true

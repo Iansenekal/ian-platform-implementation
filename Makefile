@@ -37,6 +37,35 @@ lint:
 	bash -n infrastructure/search-graph/30.10-connector-verify.sh
 	bash -n infrastructure/search-graph/30.15-acl-inheritance-verify.sh
 	bash -n infrastructure/search-graph/30.70-retention-privacy-verify.sh
+	bash -n infrastructure/search-graph/30.90-voice-transcript-linking-verify.sh
+	bash -n infrastructure/voice-transcription/60.00-overview-verify.sh
+	bash -n infrastructure/voice-transcription/60.10-architecture-verify.sh
+	bash -n infrastructure/voice-transcription/60.30-storage-verify.sh
+	bash -n infrastructure/voice-transcription/60.40-rbac-verify.sh
+	bash -n infrastructure/voice-transcription/60.50-retention-verify.sh
+	bash -n infrastructure/voice-transcription/60.60-audit-verify.sh
+	bash -n infrastructure/voice-transcription/60.70-search-indexing-verify.sh
+	bash -n infrastructure/workflow-esign/70.10-approval-chain-verify.sh
+	bash -n infrastructure/workflow-esign/70.11-approve-reject-verify.sh
+	bash -n infrastructure/workflow-esign/70.30-signature-verify.sh
+	bash -n infrastructure/workflow-esign/70.40-versioning-hashing-verify.sh
+	bash -n infrastructure/workflow-esign/70.50-audit-evidence-verify.sh
+	bash -n infrastructure/notifications-mail/71.10-mail-architecture-verify.sh
+	bash -n infrastructure/notifications-mail/71.15-actionable-email-verify.sh
+	bash -n infrastructure/notifications-mail/71.40-mail-audit-verify.sh
+	bash -n infrastructure/notifications-mail/71.50-mail-evidence-retention-verify.sh
+	bash -n infrastructure/automation/n8n/40.00-n8n-overview-verify.sh
+	bash -n infrastructure/automation/n8n/40.10-n8n-ports-boundaries-verify.sh
+	bash -n infrastructure/automation/n8n/40.20-n8n-sso-mfa-verify.sh
+	bash -n infrastructure/automation/n8n/40.30-n8n-secrets-policy-verify.sh
+	bash -n infrastructure/automation/n8n/40.50-n8n-backup-restore-verify.sh
+	bash -n infrastructure/automation/n8n/40.60-n8n-verification-verify.sh
+	bash -n infrastructure/automation/windmill/41.00-windmill-overview-verify.sh
+	bash -n infrastructure/automation/windmill/41.10-windmill-ports-boundaries-verify.sh
+	bash -n infrastructure/automation/windmill/41.20-windmill-sso-mfa-verify.sh
+	bash -n infrastructure/automation/windmill/41.30-windmill-secrets-policy-verify.sh
+	bash -n infrastructure/automation/windmill/41.50-windmill-backup-restore-verify.sh
+	bash -n infrastructure/automation/windmill/41.60-windmill-verification-verify.sh
 	bash -n infrastructure/secrets-standard/03.20-init-stack-layout.sh
 	bash -n infrastructure/secrets-standard/03.20-generate-secret-file.sh
 	bash -n infrastructure/secrets-standard/03.20-verify-secrets-standard.sh
@@ -107,6 +136,35 @@ verify:
 	$(PYTHON) scripts/prephase/verify_search_knowledge_graph_sources_connectors_artifacts.py
 	$(PYTHON) scripts/prephase/verify_search_knowledge_graph_acl_inheritance_artifacts.py
 	$(PYTHON) scripts/prephase/verify_search_knowledge_graph_retention_privacy_artifacts.py
+	$(PYTHON) scripts/prephase/verify_search_knowledge_graph_voice_transcript_linking_artifacts.py
+	$(PYTHON) scripts/prephase/verify_voice_transcription_overview_artifacts.py
+	$(PYTHON) scripts/prephase/verify_voice_transcription_architecture_artifacts.py
+	$(PYTHON) scripts/prephase/verify_voice_transcription_storage_artifacts.py
+	$(PYTHON) scripts/prephase/verify_voice_transcription_rbac_artifacts.py
+	$(PYTHON) scripts/prephase/verify_voice_transcription_retention_artifacts.py
+	$(PYTHON) scripts/prephase/verify_voice_transcription_audit_events_artifacts.py
+	$(PYTHON) scripts/prephase/verify_voice_transcription_search_indexing_artifacts.py
+	$(PYTHON) scripts/prephase/verify_workflow_approval_chain_artifacts.py
+	$(PYTHON) scripts/prephase/verify_workflow_approve_reject_escalation_artifacts.py
+	$(PYTHON) scripts/prephase/verify_workflow_signature_standard_artifacts.py
+	$(PYTHON) scripts/prephase/verify_workflow_versioning_hashing_artifacts.py
+	$(PYTHON) scripts/prephase/verify_workflow_audit_evidence_pack_artifacts.py
+	$(PYTHON) scripts/prephase/verify_notifications_mail_architecture_artifacts.py
+	$(PYTHON) scripts/prephase/verify_actionable_email_approve_reject_artifacts.py
+	$(PYTHON) scripts/prephase/verify_notifications_mail_audit_logging_artifacts.py
+	$(PYTHON) scripts/prephase/verify_notifications_mail_retention_artifacts.py
+	$(PYTHON) scripts/prephase/verify_automation_n8n_overview_artifacts.py
+	$(PYTHON) scripts/prephase/verify_automation_n8n_ports_boundaries_artifacts.py
+	$(PYTHON) scripts/prephase/verify_automation_n8n_sso_mfa_artifacts.py
+	$(PYTHON) scripts/prephase/verify_automation_n8n_secrets_policy_artifacts.py
+	$(PYTHON) scripts/prephase/verify_automation_n8n_backup_restore_artifacts.py
+	$(PYTHON) scripts/prephase/verify_automation_n8n_verification_checklist_artifacts.py
+	$(PYTHON) scripts/prephase/verify_automation_windmill_overview_artifacts.py
+	$(PYTHON) scripts/prephase/verify_automation_windmill_ports_boundaries_artifacts.py
+	$(PYTHON) scripts/prephase/verify_automation_windmill_sso_mfa_artifacts.py
+	$(PYTHON) scripts/prephase/verify_automation_windmill_secrets_policy_artifacts.py
+	$(PYTHON) scripts/prephase/verify_automation_windmill_backup_restore_artifacts.py
+	$(PYTHON) scripts/prephase/verify_automation_windmill_verification_checklist_artifacts.py
 	$(PYTHON) scripts/prephase/verify_identity_provider_overview_artifacts.py
 	$(PYTHON) scripts/prephase/verify_identity_provider_ports_boundaries_artifacts.py
 	$(PYTHON) scripts/prephase/verify_monitoring_audit_retention_artifacts.py

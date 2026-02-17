@@ -1,0 +1,14 @@
+version: 1
+retention:
+  central_audit_events_days: 365
+  smtp_relay_local_logs_days: 30
+  smtp_relay_local_logs_max_days: 90
+  evidence_pack_receipts: per_document_retention
+privacy_controls:
+  default_recipient_logging_mode: count
+  allow_full_address_logging: policy_exception_only
+  reject_reason_logging_default: category_only
+integrity_controls:
+  append_only_from_app_identity: true
+  restricted_index_deletion: true
+  optional_hash_chain_supported: true
