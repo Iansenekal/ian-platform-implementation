@@ -4,7 +4,6 @@ services:
     build: .
     ports:
       - "5000:5000"
-      - "8000:8000"
     environment:
       - FLASK_ENV=development
 
@@ -14,6 +13,7 @@ services:
       - "9090:9090"
     volumes:
       - ../../platform/observability/metrics/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ../../platform/observability/metrics/alert-rules.yml:/etc/prometheus/alert-rules.yml:ro
 
   grafana:
     image: grafana/grafana:latest

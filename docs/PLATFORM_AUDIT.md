@@ -1,231 +1,121 @@
 # Platform Audit Against Mandatory Standards
 
-**Audit Date:** 2026-02-13  
+**Audit Date:** 2026-02-16  
 **Repository:** ian-platform-implementation  
-**Scope:** Phase 0–1 (Repo Hygiene + Observability/Security Foundations)
+**Scope:** Phase 0-2 baseline plus Sprint A/B scaffolds (10-29 infra skeleton, Keycloak/gateway baseline, secrets controls)
 
 ---
 
-## SECTION 1 — REPOSITORY HYGIENE & BASELINE
+## SECTION 1 - REPOSITORY HYGIENE & BASELINE
 
 | Check | Status | Evidence |
 |-------|--------|----------|
-| README.md explaining purpose, scope, local-only intent | ✅ PASS | [README.md](../README.md) covers purpose, setup, dev container usage |
-| .gitignore includes secrets (.env, *.key, *.pem, *.crt) | ✅ PASS | [.gitignore](../.gitignore) excludes .env*, *.key, *.pem, .secrets |
-| .devcontainer/ directory present and valid | ✅ PASS | [.devcontainer/](../.devcontainer/) exists with devcontainer.json |
-| devcontainer.json exists and builds successfully | ✅ PASS | Minimal image (mcr.microsoft.com/vscode/devcontainers/base:ubuntu) |
-| No secrets committed to Git history | ✅ PASS | .env.example only (no real secrets) |
+| README explains purpose and setup | PASS | [README.md](../README.md) |
+| .gitignore excludes secret artifacts | PASS | [.gitignore](../.gitignore) (`.env`, `.env.*`, `*.key`, `*.pem`, `.secrets`) |
+| Dev container scaffolding exists | PASS | [.devcontainer/devcontainer.json](../.devcontainer/devcontainer.json) |
+| Secrets committed to tracked files | PASS | [.env.example](../.env.example) uses placeholders only |
 
-**Summary:** ✅ **PASS** — Repository hygiene baseline is solid.
+**Summary:** PASS - baseline repository hygiene is in place.
 
 ---
 
-## SECTION 2 — SECRETS STANDARD (03.20)
+## SECTION 2 - SECRETS STANDARD (03.20)
 
 | Check | Status | Evidence |
 |-------|--------|----------|
-| No secrets stored in repository | ✅ PASS | .env*.gitignore, .env.example is placeholder only |
-| .env excluded via .gitignore | ✅ PASS | .gitignore line: `.env` and `.env.*` |
-| Secrets injected at runtime only | ⚠️ PARTIAL | Pattern described in README; no implementation example yet |
-| Secrets never logged | ⚠️ PARTIAL | No logging standard yet (see Section 3) |
-| Rotation strategy possible without image rebuild | ⚠️ PARTIAL | .env pattern supports this; no documented procedure |
-| Secrets pattern documented | ⚠️ PARTIAL | README mentions env vars; no detailed runbook |
-| .env.example exists (no real values) | ✅ PASS | [.env.example](../.env.example) with placeholders |
+| No secrets committed in baseline templates | PASS | [.env.example](../.env.example), [.gitignore](../.gitignore) |
+| Runtime env pattern documented | PARTIAL | [README.md](../README.md) references `.env`; no dedicated secrets runbook yet |
+| Rotation procedure documented | MISSING | No `docs/SECRETS_ROTATION_PROCEDURE.md` |
+| Secret scanning automation in repo | MISSING | No pre-commit or CI secret scan script yet |
 
-**Summary:** ⚠️ **PARTIAL** — Baseline exists; documentation and rotation runbook needed.
-
-**Corrective Actions (Priority: Medium):**
-- [ ] Create `docs/SECRETS_MANAGEMENT.md` with runtime injection patterns (Docker secrets, env vars, mounted files)
-- [ ] Create `docs/SECRETS_ROTATION_PROCEDURE.md` with timelines and verification steps
-- [ ] Add pre-commit hook example in `tools/pre-commit-secrets-check.sh`
+**Summary:** PARTIAL - policy direction exists, but operational controls are still missing.
 
 ---
 
-## SECTION 3 — AUDIT LOGGING (03.30)
+## SECTION 3 - AUDIT LOGGING & EVENT MODEL (03.30 / 50.30)
 
 | Check | Status | Evidence |
 |-------|--------|----------|
-| Authentication events (login, MFA, session) | ❌ MISSING | No audit schema defined |
-| Authorization events (role/group, access denied) | ❌ MISSING | No audit schema defined |
-| Admin actions (config, deployment, privilege escalation) | ❌ MISSING | No audit schema defined |
-| Data access metadata (file/API calls, no payloads) | ❌ MISSING | No audit schema defined |
-| Time sync enforced (Africa/Johannesburg TZ) | ❌ MISSING | No timezone enforcement in platform |
-| Log format (timestamp, actor, source, action, result) | ❌ MISSING | No schema defined |
-| LAN-only logging (no cloud shipping) | ⚠️ PARTIAL | Intended by design (dev container) but not documented |
+| Audit event schema defined | PASS | [platform/observability/audit-events/EVENT_SCHEMA.md](../platform/observability/audit-events/EVENT_SCHEMA.md) |
+| Audit event catalog defined | PASS | [platform/observability/audit-events/AUDIT_EVENT_CATALOG.md](../platform/observability/audit-events/AUDIT_EVENT_CATALOG.md) |
+| Correlation ID pattern defined | PASS | [platform/observability/audit-events/CORRELATION_ID_PATTERN.md](../platform/observability/audit-events/CORRELATION_ID_PATTERN.md) |
+| Retention policy documented | PASS | [platform/observability/audit-events/RETENTION_POLICY.md](../platform/observability/audit-events/RETENTION_POLICY.md) |
+| Structured logging standards documented | PASS | [platform/observability/logging/STRUCTURED_LOGGING.md](../platform/observability/logging/STRUCTURED_LOGGING.md) |
+| Reference service emits schema-complete audit events | PARTIAL | `services/reference-app/app.py` includes correlation + metrics; full audit-event emission not yet implemented |
 
-**Summary:** ❌ **MISSING** — Audit logging schema and event definitions required.
-
-**Corrective Actions (Priority: CRITICAL):**
-- [ ] Create `platform/observability/audit-events/EVENT_SCHEMA.md` with:
-  - Standard fields: timestamp, source_system, event_type, actor_id, source_ip, target_resource, action, outcome
-  - Example events (auth, authz, admin, data access)
-  - Timezone requirement: Africa/Johannesburg (UTC+2)
-- [ ] Create `platform/observability/audit-events/AUDIT_EVENT_CATALOG.md` listing all event types
-- [ ] Create `examples/audit-logging-integration.md` with JSON/structured log format examples
+**Summary:** PASS for standards/docs, PARTIAL for runtime implementation depth.
 
 ---
 
-## SECTION 4 — AUDIT EVENT MODEL (50.30)
+## SECTION 4 - METRICS & OBSERVABILITY WIRING (50.10)
 
 | Check | Status | Evidence |
 |-------|--------|----------|
-| Standard event fields (timestamp, source_system, event_type, etc.) | ❌ MISSING | No schema defined |
-| Correlation/request IDs for tracing | ❌ MISSING | No tracing pattern defined |
-| Metadata-only logging (no file contents, no PII payloads) | ⚠️ PARTIAL | Intended but not documented or validated |
+| Service exports Prometheus metrics endpoint | PASS | [services/reference-app/app.py](../services/reference-app/app.py) exposes `/metrics` |
+| Gunicorn-compatible metrics path | PASS | [services/reference-app/Dockerfile](../services/reference-app/Dockerfile) serves app on `:5000`; metrics routed in Flask app |
+| Prometheus target matches compose service | PASS | [platform/observability/metrics/prometheus.yml](../platform/observability/metrics/prometheus.yml) scrapes `reference-app:5000` |
+| Alert rules align to emitted metric names | PASS | [platform/observability/metrics/alert-rules.yml](../platform/observability/metrics/alert-rules.yml) uses `http_requests_total`, `http_request_duration_seconds_bucket`, `auth_login_attempts_total` |
+| Compose mounts alert rules into Prometheus | PASS | [services/reference-app/docker-compose.yml](../services/reference-app/docker-compose.yml) mounts `alert-rules.yml` |
 
-**Summary:** ❌ **MISSING** — Event model schema required, including correlation ID pattern.
-
-**Corrective Actions (Priority: CRITICAL):**
-- [ ] Create `platform/observability/audit-events/CORRELATION_ID_PATTERN.md` specifying:
-  - Request ID generation (UUID, timestamp-based, etc.)
-  - Propagation across service calls (HTTP headers, logging context)
-  - Example: `X-Request-ID`, `X-Trace-ID` headers
-- [ ] Create `platform/observability/audit-events/EVENT_EXAMPLES.json` with realistic events
+**Summary:** PASS - local observability wiring is now coherent for the reference app stack.
 
 ---
 
-## SECTION 5 — RETENTION & PURGE (03.40 / 50.30)
+## SECTION 5 - CI QUALITY GATES & TEST HARNESS
 
 | Check | Status | Evidence |
 |-------|--------|----------|
-| Retention rules defined | ❌ MISSING | No retention policy |
-| Enforceable by config/automation | ❌ MISSING | No retention mechanism |
-| Auth & admin logs: 180–365 days | ❌ MISSING | No policy |
-| File/share metadata: ~180 days | ❌ MISSING | No policy |
-| Automation/system logs: 90–365 days | ❌ MISSING | No policy |
-| Purge capability (scripts, cron, etc.) | ❌ MISSING | No tooling |
-| Legal hold / exception process | ❌ MISSING | No documented procedure |
+| CI gates fail on lint/build/test errors | PASS | [.github/workflows/ci.yml](../.github/workflows/ci.yml) uses strict `make lint`, `make build`, `make test` (no `|| true`) |
+| Deterministic local quality commands | PASS | [Makefile](../Makefile) defines `install-dev`, `lint`, `build`, `test` |
+| Test framework added for reference app | PASS | [tests/reference_app/test_app.py](../tests/reference_app/test_app.py) |
+| Coverage of health/correlation/login/metrics behavior | PASS | [tests/reference_app/test_app.py](../tests/reference_app/test_app.py) |
+| Runtime test dependencies tracked | PASS | [services/reference-app/requirements.txt](../services/reference-app/requirements.txt), [Makefile](../Makefile) |
 
-**Summary:** ❌ **MISSING** — Comprehensive retention and purge strategy required.
-
-**Corrective Actions (Priority: HIGH):**
-- [ ] Create `platform/observability/audit-events/RETENTION_POLICY.md` with:
-  - Auth & admin events: 365 days (POPIA compliance)
-  - File/share access metadata: 180 days
-  - System/automation logs: 90 days (configurable)
-  - Legal hold process and exceptions
-- [ ] Create `deploy/audit-log-purge.sh` with dry-run and enforcement options
-- [ ] Create `docs/LEGAL_HOLD_PROCEDURE.md` for compliance exceptions
+**Summary:** PASS - this repo now has enforceable baseline quality gates and executable tests.
 
 ---
 
-## SECTION 6 — DEV CONTAINER & LOCAL DEV
+## SECTION 6 - SPRINT A/B DELIVERY EVIDENCE
 
 | Check | Status | Evidence |
 |-------|--------|----------|
-| Dev Container builds successfully | ✅ PASS | [.devcontainer/devcontainer.json](../.devcontainer/devcontainer.json) valid |
-| Git works inside container | ✅ PASS | Base image includes Git; setup script verifies it |
-| Docker CLI available if required | ✅ PASS | tools/setup-dev.sh installs docker.io (optional) |
-| Non-root default user inside container | ✅ PASS | remoteUser: vscode |
-| Workspace path is /workspaces/<repo> | ✅ PASS | Standard VS Code dev container layout |
+| Workflow traceability matrix (00-99) added | PASS | [docs/WORKFLOW_TRACEABILITY.md](../docs/WORKFLOW_TRACEABILITY.md) |
+| Implementation backlog board added | PASS | [docs/IMPLEMENTATION_BACKLOG.md](../docs/IMPLEMENTATION_BACKLOG.md) |
+| 10-29 infrastructure skeleton present | PASS | [infrastructure/proxmox](../infrastructure/proxmox), [infrastructure/vm-provisioning](../infrastructure/vm-provisioning), [infrastructure/ollama-gpu](../infrastructure/ollama-gpu) |
+| Pre-phase executable verification scripts present | PASS | [scripts/prephase/verify_artifact_presence.sh](../scripts/prephase/verify_artifact_presence.sh), [scripts/prephase/verify_network_plan.py](../scripts/prephase/verify_network_plan.py) |
+| Keycloak deployment scaffold present | PASS | [infrastructure/keycloak/docker-compose.yml](../infrastructure/keycloak/docker-compose.yml) |
+| Gateway scaffold present | PASS | [infrastructure/gateway/nginx/nginx.conf](../infrastructure/gateway/nginx/nginx.conf) |
+| Secrets management operational controls present | PASS | [platform/security/secrets-management/SECRETS_MANAGEMENT.md](../platform/security/secrets-management/SECRETS_MANAGEMENT.md), [tools/pre-commit-secrets-check.sh](../tools/pre-commit-secrets-check.sh) |
+| Reference app emits runtime audit events | PASS | [services/reference-app/app.py](../services/reference-app/app.py) |
 
-**Summary:** ✅ **PASS** — Dev container baseline is functional.
-
-**Corrective Actions (Optional):**
-- [ ] Update [.devcontainer/README.md](../.devcontainer/README.md) with build/troubleshooting steps
-- [ ] Add Makefile stub in root with `make dev-build`, `make dev-shell` targets
-
----
-
-## SECTION 7 — GAP SUMMARY
-
-### Overall Status by Section
-
-| Section | Status | Priority | Impact |
-|---------|--------|----------|--------|
-| 1. Repository Hygiene | ✅ PASS | — | Foundational baseline achieved |
-| 2. Secrets Standard | ⚠️ PARTIAL | Medium | Pattern exists; rotation procedure needed |
-| 3. Audit Logging | ❌ MISSING | **CRITICAL** | Cannot begin Phase 1a until schema defined |
-| 4. Audit Event Model | ❌ MISSING | **CRITICAL** | Blocks all service development (correlation IDs) |
-| 5. Retention & Purge | ❌ MISSING | HIGH | POPIA compliance blocker |
-| 6. Dev Container | ✅ PASS | — | Ready for development |
+**Summary:** PASS - Sprint A/B scaffolding and verification controls are now implemented in-repo.
 
 ---
 
-### Prioritized TODO List (Highest Risk First)
+## SECTION 7 - REMAINING GAPS (POST-AUDIT)
 
-#### 🔴 CRITICAL (Blocks Phase 1 + all downstream):
+### High priority
 
-1. **Define Audit Event Schema** (Section 3)
-   - Create core event fields and types
-   - Time zone enforcement (Africa/Johannesburg)
-   - Metadata-only logging guardrails
-   - Deliverable: `platform/observability/audit-events/EVENT_SCHEMA.md`
+1. Implement structured audit-event emission in the reference service using the fields required by [EVENT_SCHEMA.md](../platform/observability/audit-events/EVENT_SCHEMA.md).
+2. Add secrets scanning and a secrets rotation runbook.
+3. Extend CI to validate observability config syntax (Prometheus rule checks) and container build/runtime smoke tests.
 
-2. **Define Correlation ID Pattern** (Section 4)
-   - Request ID generation and propagation
-   - Tracing across service boundaries
-   - Deliverable: `platform/observability/audit-events/CORRELATION_ID_PATTERN.md`
+### Medium priority
 
-3. **Define Retention Policy** (Section 5)
-   - Auth/admin: 365 days
-   - File/share: 180 days
-   - System: 90 days
-   - Legal hold exception process
-   - Deliverable: `platform/observability/audit-events/RETENTION_POLICY.md`
-
-#### 🟡 HIGH (Blocks service rollout):
-
-4. **Create Audit Event Catalog** (Section 3)
-   - All auth, authz, admin, data access events
-   - Deliverable: `platform/observability/audit-events/AUDIT_EVENT_CATALOG.md`
-
-5. **Create Retention Automation** (Section 5)
-   - Purge/delete script with dry-run
-   - Deliverable: `deploy/audit-log-purge.sh`
-
-6. **Create Secrets Rotation Runbook** (Section 2)
-   - Timeline, method, verification
-   - Deliverable: `docs/SECRETS_ROTATION_PROCEDURE.md`
-
-#### 🟢 MEDIUM (Improve dev experience):
-
-7. **Secrets Injection Patterns** (Section 2)
-   - Docker secrets, env vars, mounted files examples
-   - Deliverable: `docs/SECRETS_MANAGEMENT.md`
-
-8. **Pre-commit Secrets Detection** (Section 2)
-   - Shell script to detect hardcoded secrets
-   - Deliverable: `tools/pre-commit-secrets-check.sh`
-
-9. **Audit Event Examples** (Section 4)
-   - Realistic JSON payloads for all event types
-   - Deliverable: `platform/observability/audit-events/EVENT_EXAMPLES.json`
-
-10. **Dev Container Documentation** (Section 6)
-    - Build, troubleshoot, extend
-    - Deliverable: Enhanced `.devcontainer/README.md`
+1. Add integration tests that run the compose stack and assert Prometheus scrape health.
+2. Add service-level docs for how downstream services adopt this reference pattern.
 
 ---
 
-### Next Step
+## Overall Status
 
-**Recommended:** Begin with CRITICAL items 1–3 (Sections 3–5).
+| Area | Status |
+|------|--------|
+| Repository hygiene | PASS |
+| Secrets operational controls | PARTIAL |
+| Audit logging standards/docs | PASS |
+| Observability runtime wiring | PASS |
+| CI quality gates | PASS |
+| Reference service implementation depth | PARTIAL |
 
-These are prerequisites for:
-- Phase 1a (Audit Logging) implementation
-- Phase 1b–1d (Logging, Metrics, Secrets) that depend on event schema
-- All downstream service development (phases 2–11)
-
-**Sequencing:**
-1. Define Event Schema + Catalog (1 day)
-2. Define Correlation ID Pattern (0.5 day)
-3. Define Retention Policy (0.5 day)
-4. Create example implementations (1 day)
-
-**Then proceed to:** Phase 1a reference implementation + Phase 2 (Reference Service).
-
----
-
-## Compliance Alignment
-
-| Standard | Status | Coverage |
-|----------|--------|----------|
-| POPIA (Protection of Personal Information Act) | ⚠️ PARTIAL | Audit baseline ready; retention policy required for full compliance |
-| Data Protection (Audit Trail Retention) | ❌ MISSING | Retention policy needed |
-| LAN-only Architecture | ✅ PASS | By design (no cloud shipping) |
-| Ubuntu 24.04 Hardening | ⚠️ PARTIAL | Baseline ready; VM hardening scripts needed (Phase 3) |
-
----
-
-**Audit Sign-off:** Ready to proceed with Phase 1 once CRITICAL items 1–3 are delivered.
+**Audit Sign-off:** Platform baseline is now materially stronger and suitable for Phase 2 hardening work. The next milestone is moving from standards + prototype into full security/compliance runtime enforcement.

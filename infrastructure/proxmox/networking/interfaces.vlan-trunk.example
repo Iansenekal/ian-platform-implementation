@@ -1,0 +1,16 @@
+# Example /etc/network/interfaces (vlan-aware trunk baseline)
+auto lo
+iface lo inet loopback
+
+auto eno1
+iface eno1 inet manual
+
+auto vmbr0
+iface vmbr0 inet static
+    address 10.10.10.10/24
+    gateway 10.10.10.1
+    bridge-ports eno1
+    bridge-stp off
+    bridge-fd 0
+    bridge-vlan-aware yes
+    bridge-vids 10 20 30

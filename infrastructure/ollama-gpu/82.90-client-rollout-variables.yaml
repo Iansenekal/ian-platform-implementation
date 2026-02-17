@@ -1,0 +1,92 @@
+version: 1
+
+client:
+  name: "example-client"
+  project_owner: "platform-owner"
+  security_architect: "security-architect"
+  rollout_date: "2026-02-10"
+
+llm_pointer:
+  hostname: "ai-llm01"
+  ip: "10.10.5.177"
+  subnet_cidr: "10.10.5.0/24"
+  gateway: "10.10.5.1"
+  dns_servers:
+    - "10.10.5.160"
+  search_domain: "lab-dns.lab.local"
+  timezone: "Africa/Johannesburg"
+  ntp_source: "196.4.160.4"
+
+access_control:
+  admin_ssh_ips:
+    - "10.10.5.10"
+    - "10.10.5.11"
+    - "10.10.5.12"
+    - "10.10.5.13"
+    - "10.10.5.14"
+    - "10.10.5.15"
+  allowed_ssh_users:
+    - "choice"
+  ollama_callers:
+    ai_data01_ip: "10.10.5.181"
+    ai_frontend01_ip: "10.10.5.180"
+    allow_frontend_caller: true
+    allow_admin_diag_11434: true
+
+bind_policy:
+  option: "A"
+  ollama_host: "0.0.0.0:11434"
+  ollama_port: 11434
+  firewall_enforced: true
+
+storage:
+  platform_root: "/opt/ollama"
+  model_store: "/opt/ollama/models"
+  config_path: "/opt/ollama/config"
+  logs_path: "/opt/ollama/logs"
+  free_space_threshold_percent: 20
+  backup_model_store: true
+
+allowed_models:
+  - model_id: "TBA"
+    ollama_ref: "TBA"
+    model_type: "TBA"
+    origin_region: "US/EU"
+    approval_ref: "TBA"
+  - model_id: "TBA"
+    ollama_ref: "TBA"
+    model_type: "TBA"
+    origin_region: "US/EU"
+    approval_ref: "TBA"
+
+procurement:
+  outbound_internet_policy: "blocked_by_default_controlled_window"
+  acquisition_method: "official_registry_or_offline_import"
+  approval_authority: "admin_only"
+
+logging_retention:
+  request_logging_level: "metadata-only"
+  journal_retention_days: 30
+  journal_max_size: "2G"
+  evidence_retention_days: 180
+  access_log_retention_days: 180
+
+verification:
+  checklist_82_80_completed: false
+  firewall_proof_allowlisted_pass_non_allowlisted_fail: false
+  latency_thresholds_accepted: false
+  allowlist_inventory_signed_off: false
+
+signoff:
+  platform_owner:
+    name: "Choice (admin)"
+    date: "2026-02-16"
+  security_architect:
+    name: "Choice (admin)"
+    date: "2026-02-16"
+  platform_ops:
+    name: "Choice (admin)"
+    date: "2026-02-16"
+  client_representative:
+    name: "TESTEE"
+    date: "2026-02-16"

@@ -1,0 +1,3 @@
+# Replace with real public keys during client rollout.
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExampleAdminKey1 platform-admin-1
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExampleAdminKey2 platform-admin-2

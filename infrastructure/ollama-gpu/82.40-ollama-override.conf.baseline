@@ -1,0 +1,6 @@
+[Service]
+# Bind policy:
+# - Preferred: bind to LAN and enforce UFW allowlist.
+# - Alternative: bind to 127.0.0.1 and proxy via local TLS terminator.
+Environment="OLLAMA_HOST=__OLLAMA_HOST_BIND__"
+Environment="OLLAMA_MODELS=/opt/ollama/models"

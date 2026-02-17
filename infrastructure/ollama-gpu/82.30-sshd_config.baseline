@@ -1,0 +1,40 @@
+# /etc/ssh/sshd_config
+# Hardened baseline for LAN-only AI LLM pointer server
+# Managed by platform runbook: 82.30
+
+Include /etc/ssh/sshd_config.d/*.conf
+
+Port __SSH_PORT__
+AddressFamily any
+ListenAddress 0.0.0.0
+ListenAddress ::
+
+Protocol 2
+
+PermitRootLogin no
+
+PasswordAuthentication __PASSWORD_AUTH__
+KbdInteractiveAuthentication no
+ChallengeResponseAuthentication no
+UsePAM yes
+
+X11Forwarding no
+AllowTcpForwarding no
+AllowAgentForwarding no
+PermitTunnel no
+PermitUserEnvironment no
+GatewayPorts no
+
+MaxAuthTries 3
+LoginGraceTime 30
+MaxSessions 2
+ClientAliveInterval 300
+ClientAliveCountMax 2
+
+AllowUsers __ALLOW_USERS__
+
+LogLevel VERBOSE
+
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com
+KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com

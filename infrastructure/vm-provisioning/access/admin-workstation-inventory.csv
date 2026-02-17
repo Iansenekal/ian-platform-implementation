@@ -1,0 +1,5 @@
+admin_name,device_os,lan_ip,ssh_key_fingerprint
+senior_dev,windows11,<fill>,<fill>
+junior_dev,windows11,<fill>,<fill>
+student_dev,windows11,<fill>,<fill>
+ops_maintenance,macos,<fill>,<fill>

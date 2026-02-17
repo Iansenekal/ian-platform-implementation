@@ -1,0 +1,18 @@
+{
+  "model_id": "us_eu_chat_001",
+  "ollama_ref": "llama3.1:8b-instruct",
+  "approval_ref": "CHG-2026-0001",
+  "origin_region": "US",
+  "source": "official",
+  "installed_by": "platform-ops",
+  "installed_at_utc": "2026-02-10T10:00:00Z",
+  "artifacts": [
+    {
+      "path": "/opt/ollama/models/<artifact>",
+      "sha256": "<sha256>"
+    }
+  ],
+  "intended_use": "General assistant",
+  "data_classification_limit": "No special-category data",
+  "retention_logging_policy": "metadata-only"
+}

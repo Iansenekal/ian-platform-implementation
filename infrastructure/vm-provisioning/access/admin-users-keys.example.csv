@@ -1,0 +1,5 @@
+username,public_key
+seniordev,ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExampleSeniorDevKey seniordev@choiceit
+juniordev,ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExampleJuniorDevKey juniordev@choiceit
+studentdev,ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExampleStudentDevKey studentdev@choiceit
+opsmaint,ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExampleOpsKey opsmaint@choiceit

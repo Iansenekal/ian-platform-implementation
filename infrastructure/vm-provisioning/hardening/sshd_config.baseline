@@ -1,0 +1,33 @@
+# Managed by Platform Ops - baseline hardening (v1.0)
+
+Port __SSH_PORT__
+Protocol 2
+
+# Authentication
+PermitRootLogin no
+PasswordAuthentication __PASSWORD_AUTH__
+PubkeyAuthentication yes
+AuthenticationMethods publickey
+
+# Reduce attack surface
+X11Forwarding no
+AllowTcpForwarding no
+PermitTunnel no
+GatewayPorts no
+AllowAgentForwarding no
+
+# Session settings
+ClientAliveInterval 300
+ClientAliveCountMax 2
+LoginGraceTime 30
+MaxAuthTries 3
+MaxSessions 10
+
+# Logging
+LogLevel VERBOSE
+
+# Accept environment variables (restrict)
+AcceptEnv LANG LC_*
+
+# Subsystems
+Subsystem sftp /usr/lib/openssh/sftp-server

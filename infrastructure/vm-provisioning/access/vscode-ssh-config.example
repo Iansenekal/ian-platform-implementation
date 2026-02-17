@@ -1,0 +1,11 @@
+Host ai-data01
+  HostName 10.10.5.178
+  User seniordev
+  IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
+
+Host ai-frontend01
+  HostName 10.10.5.179
+  User seniordev
+  IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes

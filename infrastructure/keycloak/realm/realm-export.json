@@ -1,0 +1,25 @@
+{
+  "realm": "platform",
+  "enabled": true,
+  "displayName": "Platform Realm",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": true,
+  "roles": {
+    "realm": [
+      { "name": "platform-admin" },
+      { "name": "platform-operator" },
+      { "name": "platform-user" }
+    ]
+  },
+  "groups": [
+    { "name": "grp-platform-admin", "realmRoles": ["platform-admin"] },
+    { "name": "grp-platform-operator", "realmRoles": ["platform-operator"] },
+    { "name": "grp-platform-user", "realmRoles": ["platform-user"] }
+  ],
+  "otpPolicyType": "totp",
+  "otpPolicyAlgorithm": "HmacSHA1",
+  "otpPolicyDigits": 6,
+  "otpPolicyPeriod": 30
+}

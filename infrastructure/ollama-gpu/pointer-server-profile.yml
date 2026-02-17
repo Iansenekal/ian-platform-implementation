@@ -1,0 +1,36 @@
+pointer_server:
+  name: ai-llm01
+  ip: 10.10.5.177
+  role: dedicated_ollama_runtime
+  os: ubuntu-24.04
+  lan_only: true
+  runtime_cloud_dependency: false
+
+callers:
+  approved_sources:
+    - ai-data01
+  gateway_mediated_calls_required: true
+
+policy:
+  model_origin_allowlist_regions:
+    - US
+    - EU
+  model_auto_update_allowed: false
+  model_pull_requires_approval: true
+  checksum_record_required: true
+
+network:
+  ollama_api_port: 11434
+  ssh_port: 22
+  inbound_wan_exposure_allowed: false
+  internal_tls_preferred: true
+
+hardware:
+  gpu_model: AMD_RX_7900_XT
+  passthrough_required: true
+  min_ram_gb: 32
+  preferred_ram_gb: 64
+
+logging:
+  level: metadata_only
+  content_redaction_required: true

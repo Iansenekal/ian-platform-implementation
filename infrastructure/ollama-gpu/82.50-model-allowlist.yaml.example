@@ -1,0 +1,40 @@
+version: 1
+policy:
+  id: "82.50-us-eu-allowlist"
+  owner: "Platform Owner"
+  enforcement_mode: "strict"
+  allowed_origin_regions:
+    - "US"
+    - "EU"
+  approval_ref_format: "CHG-YYYY-####"
+  default_logging_policy: "metadata-only"
+  evidence_retention_days: 180
+
+models:
+  - model_id: "us_eu_chat_001"
+    ollama_ref: "llama3.1:8b-instruct"
+    type: "chat"
+    origin_region: "US"
+    source: "official"
+    provenance_notes: "Validated by Security Architect"
+    approved_by: "choice"
+    approval_ref: "CHG-2026-0001"
+    approved_date: "2026-02-10"
+    intended_use: "General assistant"
+    data_classification_limit: "No special-category data"
+    retention_logging_policy: "metadata-only"
+    checksum_policy: "record sha256 in model-inventory"
+
+  - model_id: "us_eu_embeddings_001"
+    ollama_ref: "mxbai-embed-large:latest"
+    type: "embeddings"
+    origin_region: "US"
+    source: "official"
+    provenance_notes: "Validated by Security Architect"
+    approved_by: "choice"
+    approval_ref: "CHG-2026-0002"
+    approved_date: "2026-02-10"
+    intended_use: "Embeddings pipeline"
+    data_classification_limit: "No raw HR/payroll docs"
+    retention_logging_policy: "metadata-only"
+    checksum_policy: "record sha256 in model-inventory"

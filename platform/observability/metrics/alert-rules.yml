@@ -2,43 +2,55 @@ groups:
   - name: platform-slo-alerts
     interval: 30s
     rules:
-      - alert: HighErrorRate
-        expr: rate(app_errors_total[5m]) > 0.01
+      - alert: HighHttp5xxErrorRate
+        expr: |
+          (
+            sum(rate(http_requests_total{job="reference-app",status=~"5.."}[5m]))
+            /
+            clamp_min(sum(rate(http_requests_total{job="reference-app"}[5m])), 1)
+          ) > 0.05
         for: 5m
         labels:
           severity: critical
         annotations:
-          summary: "High error rate in {{ $labels.service }}"
-          runbook: "https://wiki.example.com/runbooks/high_error_rate"
+          summary: "High HTTP 5xx ratio in reference-app"
 
-      - alert: SlowResponseTime
-        expr: histogram_quantile(0.95, http_request_duration_seconds) > 0.5
+      - alert: HighLatencyP95
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum(rate(http_request_duration_seconds_bucket{job="reference-app"}[5m])) by (le)
+          ) > 0.5
         for: 5m
         labels:
           severity: warning
         annotations:
-          summary: "Slow responses from {{ $labels.service }}"
+          summary: "P95 latency above 500ms in reference-app"
 
       - alert: HighLatencyP99
-        expr: histogram_quantile(0.99, http_request_duration_seconds) > 2.0
+        expr: |
+          histogram_quantile(
+            0.99,
+            sum(rate(http_request_duration_seconds_bucket{job="reference-app"}[5m])) by (le)
+          ) > 2.0
         for: 10m
         labels:
           severity: warning
         annotations:
-          summary: "P99 latency high in {{ $labels.service }}"
+          summary: "P99 latency above 2s in reference-app"
 
       - alert: ServiceDown
-        expr: up{job="auth-service"} == 0
+        expr: up{job="reference-app"} == 0
         for: 1m
         labels:
           severity: critical
         annotations:
-          summary: "{{ $labels.service }} is down!"
+          summary: "reference-app is down"
 
-      - alert: DBConnectionPoolExhausted
-        expr: db_connection_pool_size{status="active"} >= db_connection_pool_size{status="total"}
-        for: 2m
+      - alert: LoginFailuresBurst
+        expr: increase(auth_login_attempts_total{job="reference-app",result="failure"}[10m]) > 10
+        for: 10m
         labels:
-          severity: critical
+          severity: warning
         annotations:
-          summary: "DB connection pool exhausted in {{ $labels.database }}"
+          summary: "High failed-login volume detected in reference-app"

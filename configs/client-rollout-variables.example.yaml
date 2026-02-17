@@ -1,0 +1,22 @@
+client:
+  name: example-client
+  region: south-africa
+  timezone: Africa/Johannesburg
+
+network:
+  management_cidr: 10.10.0.0/24
+  services_cidr: 10.20.0.0/24
+  data_cidr: 10.30.0.0/24
+  dns_domain: lan.example.internal
+
+identity:
+  auth_mode: local
+  keycloak_realm: platform
+
+monitoring:
+  prometheus_retention_days: 30
+  grafana_admin_user: admin
+
+rollout_variables:
+  prephase_gate_required: true
+  go_live_approver: platform-owner

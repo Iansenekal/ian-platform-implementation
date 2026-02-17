@@ -10,51 +10,86 @@ on:
       - main
 
 jobs:
-  ci:
+  reference-app-quality:
     runs-on: ubuntu-latest
-    name: Minimal CI (lint / build / test placeholders)
+    name: Reference App Quality Gates
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
         run: |
-          echo "Starting minimal CI: lint, build, test placeholders"
+          python -m pip install --upgrade pip
+          make install-dev
 
       - name: Lint
-        run: |
-          set -e
-          if [ -f Makefile ]; then
-            make lint || true
-          elif [ -f package.json ]; then
-            npm run lint --if-present || true
-          elif [ -f pyproject.toml ]; then
-            python -m pip install --user flake8 || true
-            flake8 || true
-          else
-            echo "No lint target found; skipping"
-          fi
+        run: make lint
 
       - name: Build
-        run: |
-          set -e
-          if [ -f Makefile ]; then
-            make build || true
-          elif [ -f package.json ]; then
-            npm run build --if-present || true
-          else
-            echo "No build target found; skipping"
-          fi
+        run: make build
 
       - name: Test
+        run: make test
+
+      - name: Verify
+        run: make verify
+
+  keycloak-realm-smoke:
+    runs-on: ubuntu-latest
+    name: Keycloak Realm Bootstrap Smoke
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Keycloak smoke test
         run: |
-          set -e
-          if [ -f Makefile ]; then
-            make test || true
-          elif [ -f package.json ]; then
-            npm test --if-present || true
-          elif [ -f pyproject.toml ]; then
-            python -m pytest || true
-          else
-            echo "No test target found; skipping"
-          fi
+          make smoke-keycloak
+
+  gateway-jwt-smoke:
+    runs-on: ubuntu-latest
+    name: Gateway JWT Validation Smoke
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run gateway JWT smoke test
+        run: |
+          make smoke-gateway-jwt
+
+  secrets-rotation-evidence:
+    runs-on: ubuntu-latest
+    name: Secrets Rotation Evidence
+    permissions:
+      id-token: write
+      attestations: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate evidence artifact
+        run: |
+          make evidence-secrets-rotation
+
+      - name: Upload evidence artifact
+        id: upload_evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: secrets-rotation-evidence
+          path: artifacts/secrets-rotation/
+
+      - name: Attest evidence artifact provenance
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-name: secrets-rotation-evidence
+          subject-digest: ${{ steps.upload_evidence.outputs.artifact-digest }}

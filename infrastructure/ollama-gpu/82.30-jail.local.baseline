@@ -1,0 +1,13 @@
+# /etc/fail2ban/jail.local
+# Managed by platform runbook: 82.30
+
+[DEFAULT]
+bantime = __BANTIME__
+findtime = __FINDTIME__
+maxretry = __MAXRETRY__
+backend = systemd
+
+[sshd]
+enabled = true
+port = __SSH_PORT__
+logpath = %(sshd_log)s

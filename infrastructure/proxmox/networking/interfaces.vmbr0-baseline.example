@@ -1,0 +1,14 @@
+# Example /etc/network/interfaces (single-bridge baseline)
+auto lo
+iface lo inet loopback
+
+auto eno1
+iface eno1 inet manual
+
+auto vmbr0
+iface vmbr0 inet static
+    address 10.10.5.10/24
+    gateway 10.10.5.1
+    bridge-ports eno1
+    bridge-stp off
+    bridge-fd 0

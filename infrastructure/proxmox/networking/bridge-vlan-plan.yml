@@ -1,0 +1,36 @@
+network_design:
+  mode: baseline_vmbr0
+  lan_only: true
+
+baseline_vmbr0:
+  bridge: vmbr0
+  physical_nic: eno1
+  management_ip_cidr: 10.10.5.10/24
+  gateway: 10.10.5.1
+  dns:
+    - 10.10.5.160
+  search_domain: lab.local
+  admin_allowlist:
+    - 10.10.5.20
+    - 10.10.5.21
+
+optional_vlan_expansion:
+  enabled: false
+  model: trunk
+  vlan_aware_bridge: vmbr0
+  vlans:
+    - id: 10
+      name: mgmt
+      cidr: 10.10.10.0/24
+    - id: 20
+      name: servers
+      cidr: 10.10.20.0/24
+    - id: 30
+      name: users
+      cidr: 10.10.30.0/24
+
+routing_assumptions:
+  no_wan_port_forward: true
+  inter_vlan_routing_controlled_by_firewall: true
+  internal_dns_only: true
+  updates_egress_controlled: true

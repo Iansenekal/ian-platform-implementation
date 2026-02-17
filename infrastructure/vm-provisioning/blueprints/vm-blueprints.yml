@@ -1,0 +1,60 @@
+defaults:
+  platform_domain: lab.local
+  lan_cidr: 10.10.5.0/24
+  gateway: 10.10.5.1
+  dns: 10.10.5.160
+  machine_type: q35
+  bios: ovmf
+  scsi_controller: virtio-scsi-single
+  nic_model: virtio
+  primary_bridge: vmbr0
+  qemu_guest_agent_required: true
+  disk_discard_enabled: true
+  vm_disk_datastore: vm-disks
+  backup_datastore: backup-store
+
+vm_blueprints:
+  - name: AI-DATA01
+    hostname: ai-data01.lab.local
+    role: backend_and_data
+    vcpu: 8
+    ram_gb: 32
+    system_disk_gb: 64
+    data_disks_gb:
+      - 500
+    nic:
+      bridge: vmbr0
+      vlan_tag: null
+    os: ubuntu-24.04
+    notes:
+      - scale_data_disk_first
+      - scale_ram_second
+      - scale_vcpu_third
+
+  - name: AI-FRONTEND01
+    hostname: ai-frontend01.lab.local
+    role: ui_and_ingress
+    vcpu: 4
+    ram_gb: 16
+    system_disk_gb: 64
+    data_disks_gb:
+      - 150
+    nic:
+      bridge: vmbr0
+      vlan_tag: null
+    os: ubuntu-24.04
+    notes:
+      - increase_vcpu_ram_if_build_heavy
+
+  - name: DNS01
+    hostname: dns01.lab.local
+    role: optional_internal_dns
+    enabled: false
+    vcpu: 2
+    ram_gb: 4
+    system_disk_gb: 32
+    data_disks_gb: []
+    nic:
+      bridge: vmbr0
+      vlan_tag: null
+    os: ubuntu-24.04

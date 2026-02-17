@@ -1,0 +1,62 @@
+storage_decision:
+  selected_mode: lvm_thin
+  deterministic_rebuild_required: true
+  backups_validated_required: true
+  restore_test_required: true
+  evidence_integrity_checksums_required: true
+
+quick_pick:
+  lab_single_host_default: lvm_thin
+  client_multi_disk_default: zfs
+  performance_nvme_default: zfs_or_lvm_thin_based_on_ops_capacity
+
+lvm_thin:
+  enabled: true
+  system_layout: ext4_plus_lvm_thin
+  strengths:
+    - low_operational_complexity
+    - deterministic_bootstrap
+  guardrails:
+    thin_pool_warn_percent: 70
+    thin_pool_high_percent: 85
+    thin_pool_critical_percent: 90
+
+zfs:
+  enabled: false
+  layout: mirror
+  strengths:
+    - end_to_end_checksums
+    - snapshots_and_send_receive
+  guardrails:
+    pool_warn_percent: 70
+    pool_high_percent: 85
+    pool_critical_percent: 90
+    scrub_schedule: monthly
+
+datastores:
+  iso_store:
+    id: iso-store
+    path: /var/lib/vz
+    content:
+      - iso_image
+  vm_disk_store:
+    id: vm-disks
+    backend: lvm_thin
+    content:
+      - disk_image
+      - container
+  backup_store:
+    id: backup-store
+    path: /mnt/backup
+    content:
+      - vzdump_backup_file
+    off_primary_datastore_preferred: true
+
+verification_gate:
+  required_checks:
+    - disk_inventory_documented
+    - storage_mode_justified
+    - backup_dr_plan_confirmed
+    - restore_test_scheduled
+    - monitoring_thresholds_defined
+    - evidence_preservation_confirmed
