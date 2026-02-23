@@ -1,11 +1,7 @@
 "use client";
 import { useState } from "react";
+import { menuItems } from "./menu-data";
 
-const menuItems: Record<string, string[]> = {
-  features: ["Invoicing", "Cashflow", "Payroll", "Reports"],
-  industry: ["Creative", "Handymen", "Non-profit", "Self-employed"],
-  resources: ["Help Center", "Guides", "Pricing FAQ", "Contact"],
-};
 
 export default function Home() {
   const [open, setOpen] = useState<string | null>(null);
