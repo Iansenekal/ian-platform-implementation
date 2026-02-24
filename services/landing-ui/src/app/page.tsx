@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { menuItems } from "./menu-data";
+import styles from "./page.module.css";
 
 
 export default function Home() {
@@ -8,20 +9,20 @@ export default function Home() {
   const items = open ? menuItems[open] ?? [] : [];
 
   return (
-    <main style={{ minHeight: "100vh", background: "#070707", color: "#fff", padding: 24 }}>
-      <header style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <h1 style={{ color: "#22c55e", fontSize: 42, margin: 0 }}>Sage</h1>
-        <nav style={{ display: "flex", gap: 12 }}>
-          <button onClick={() => setOpen(open === "features" ? null : "features")}>Features</button>
-          <button onClick={() => setOpen(open === "industry" ? null : "industry")}>Industry</button>
-          <button onClick={() => setOpen(open === "resources" ? null : "resources")}>Resources</button>
+    <main className={styles.page}>
+      <header className={styles.header}>
+        <h1 className={styles.logo}>Sage</h1>
+        <nav className={styles.nav}>
+          <button className={styles.navButton} onClick={() => setOpen(open === "features" ? null : "features")}>Features</button>
+          <button className={styles.navButton} onClick={() => setOpen(open === "industry" ? null : "industry")}>Industry</button>
+          <button className={styles.navButton} onClick={() => setOpen(open === "resources" ? null : "resources")}>Resources</button>
         </nav>
       </header>
 
       {open && (
-        <section style={{ marginTop: 16, background: "#fff", color: "#111", width: 280, borderRadius: 12, padding: 12 }}>
+        <section className={styles.menuPanel}>
           {items.map((item) => (
-            <div key={item} style={{ padding: "8px 4px" }}>{item}</div>
+            <div key={item} className={styles.menuItem}>{item}</div>
           ))}
         </section>
       )}
