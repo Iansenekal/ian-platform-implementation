@@ -2,8 +2,6 @@
 import { useState } from "react";
 import { menuItems } from "./menu-data";
 import styles from "./page.module.css";
-
-
 export default function Home() {
   const [open, setOpen] = useState<string | null>(null);
   const items = open ? menuItems[open] ?? [] : [];
