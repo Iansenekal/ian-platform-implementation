@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { menuItems } from "./menu-data";
+import { featureCards, hero, trustPoints } from "./landing-content";
 import styles from "./page.module.css";
 export default function Home() {
   const [open, setOpen] = useState<"features" | "industry" | "resources" | null>(null);
@@ -53,6 +54,31 @@ export default function Home() {
             }}>Resources</button>
         </nav>
       </header>
+
+      <section className={styles.heroSection}>
+        <p className={styles.eyebrow}>{hero.eyebrow}</p>
+        <h2 className={styles.heroTitle}>{hero.title}</h2>
+        <p className={styles.heroBody}>{hero.body}</p>
+        <div className={styles.heroActions}>
+          <button type="button" className={styles.primaryCta}>{hero.primaryCta}</button>
+          <button type="button" className={styles.secondaryCta}>{hero.secondaryCta}</button>
+        </div>
+      </section>
+
+      <section className={styles.trustSection}>
+        {trustPoints.map((point) => (
+          <p key={point} className={styles.trustItem}>{point}</p>
+        ))}
+      </section>
+
+      <section className={styles.featuresSection}>
+        {featureCards.map((card) => (
+          <article key={card.title} className={styles.featureCard}>
+            <h3 className={styles.featureTitle}>{card.title}</h3>
+            <p className={styles.featureBody}>{card.description}</p>
+          </article>
+        ))}
+      </section>
 
       {open && (
         <section id="menu-panel" className={styles.menuPanel} role="menu" aria-label={`${open} menu`}>
