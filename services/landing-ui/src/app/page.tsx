@@ -55,7 +55,7 @@ export default function Home() {
       </header>
 
       {open && (
-        <section id="menu-panel" className={styles.menuPanel} role="menu" aria-label={` menu`}>
+        <section id="menu-panel" className={styles.menuPanel} role="menu" aria-label={`${open} menu`}>
           {items.map((item) => (
             <div key={item} role="menuitem" tabIndex={0} className={styles.menuItem}>{item}</div>
           ))}
