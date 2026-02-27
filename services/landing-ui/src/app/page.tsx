@@ -1,7 +1,9 @@
 "use client";
+import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 import { menuItems } from "./menu-data";
 import { featureCards, hero, trustPoints } from "./landing-content";
+const organizationJsonLd = {"@context":"https://schema.org","@type":"Organization","name":"Sage","url":"http://10.10.5.186:3000"};
 import styles from "./page.module.css";
 export default function Home() {
   const [open, setOpen] = useState<"features" | "industry" | "resources" | null>(null);
@@ -30,7 +32,9 @@ export default function Home() {
   const items = open ? menuItems[open] : [];
 
   return (
-    <main className={styles.page}>
+    <>
+      <Script id="organization-jsonld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
+      <main className={styles.page}>
       <header className={styles.header}>
         <h1 className={styles.logo}>Sage</h1>
         <nav ref={navRef} className={styles.nav}>
@@ -88,5 +92,6 @@ export default function Home() {
         </section>
       )}
     </main>
+    </>
   );
 }
