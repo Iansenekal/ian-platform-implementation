@@ -1,5 +1,4 @@
 "use client";
-import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 import { menuItems } from "./menu-data";
 import { featureCards, hero, trustPoints } from "./landing-content";
@@ -33,7 +32,7 @@ export default function Home() {
 
   return (
     <>
-      <Script id="organization-jsonld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
       <main className={styles.page}>
       <header className={styles.header}>
         <h1 className={styles.logo}>Sage</h1>
