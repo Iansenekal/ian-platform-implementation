@@ -24,3 +24,6 @@ __pycache__/
 .env
 
 artifacts/
+
+# Local Docker overrides
+**/docker-compose.override.yml
